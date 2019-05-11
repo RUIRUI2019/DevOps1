@@ -58,7 +58,7 @@ def equip_tianjia():
         # 如果发生错误则回滚
         traceback.print_exc()
         db.rollback()
-        flash('对不起添加失败')
+        flash('对不起添加失败le')
         return render_template('position_add.html')
     # 关闭数据库连接
     db.close()
