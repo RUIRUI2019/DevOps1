@@ -5,11 +5,8 @@ import pymysql
 import time
 import traceback
 
-
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '123456'
-
 
 @app.route('/')
 def hello_world():
