@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>头部-有点</title>
+<link rel="stylesheet" type="text/css" href="/static/css/css.css" />
+ <style>
+table tr:nth-child(odd){
+      background: #dff0d8;
+}
+</style>
+
+</head>
+
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page">
+				<img src="/static/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+					href="#">公共管理</a>&nbsp;-</span>&nbsp;意见管理
+			</div>
+		</div>
+		<div class="page">
+			<!-- opinion 页面样式 -->
+			<div class="opinion">
+				<!-- opinion 表格 显示 -->
+				<div class="opShow">
+					<table border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+						<tr>
+							<td width="440px" class="tdColor">设备序号</td>
+							<td width="440px" class="tdColor">主轴转速</td>
+							<td width="440px" class="tdColor">当前产量</td>
+							<td width="440px" class="tdColor">单步/连绕</td>
+                            <td width="440px" class="tdColor">周期时间</td>
+                            <td width="440px" class="tdColor">放料个数</td>
+                            <td width="440px" class="tdColor">转速</td>
+                            <td width="440px" class="tdColor">圈数</td>
+                            <td width="440px" class="tdColor">时间</td>
+						</tr>
+                        </thead>
+                         <tbody id="tab_opc">
+                         </tbody>
+                <script type="text/javascript" src="/static/jquery.js"></script>
+                <script>
+               setInterval(loaddata,1000);
+              function loaddata(){
+                  var html = '';
+                  $.ajax({
+                   url: '/machin',
+                   type: 'post',
+                   dataType: 'json',
+                    async:true,
+                   success: function (data) { //方法中传入的参数data为后台获取的数据
+                       console.log(data);
+                       console.log(123);
+                       for (var i = 0; i < data.length; i++)  //data.data指的是数组，数组里是8个对象，i为数组的索引
+                       {
+                           console.log(234);
+                           var equipment_id = data[i].equipment_id;
+                           var maxis_speed = data[i].maxis_speed;
+                           var current_yield = data[i].current_yield;
+                           var dan_lian = data[i].dan_lian;
+                           var cycle_time = data[i].cycle_time;
+                           var material_num = data[i].material_num;
+                           var speed = data[i].speed;
+                           var quanshu = data[i].quanshu;
+                           var time = data[i].time;
+                           html += '<tr height=40px><td class="center">' + equipment_id + '</td>' +
+                               '<td class="center">' + maxis_speed + '</td>' +
+                               '<td class="center">' + current_yield + '</td>' +
+                               '<td class="center">' + dan_lian + '</td>' +
+                               '<td class="center">' + cycle_time + '</td>' +
+                               '<td class="center">' + material_num + '</td>' +
+                               '<td class="center">' + speed + '</td>' +
+                               '<td class="center">' + quanshu + '</td>' +
+                               '<td class="center">' + time + '</td></tr>';
+                           {#$("#tab").append(html)#}
+                           {#html = '';#}
+                       }
+                       document.getElementById("tab_opc").innerHTML= html;
+                   }
+               })
+              }
+        </script>
+					</table>
+					<div class="paging">此处是分页</div>
+				</div>
+				<!-- opinion 表格 显示 end-->
+			</div>
+			<!-- 页面样式end -->
+		</div>
+	</div>
+</body>
+</html>

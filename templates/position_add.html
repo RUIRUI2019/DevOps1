@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>行家添加-有点</title>
+<link rel="stylesheet" type="text/css" href="/static/css/css.css" />
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+</head>
+<body >
+	<div id="pageAll" style="background-image: url('/static/img/dev3.png')">
+		<div class="pageTop">
+			<div class="page">
+				<img src="/static/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+					href="#">设备位置显示</a>&nbsp;-</span>&nbsp;设备添加
+			</div>
+		</div>
+		<div class="page ">
+			<!-- 上传广告页面样式 -->
+			<div class="banneradd bor">
+                <form method="get" action="/equip_tianjia" id="tianjiaform">
+				<div class="baTopNo">
+					<span>设备添加</span>
+				</div>
+				<div class="baBody">
+{#					<div class="bbD">#}
+{#						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;头像：#}
+{#						<div class="vipHead vipHead1">#}
+{#							<img src="/static/img/userPICS.png" />#}
+{#							<p class="vipP">更换头像</p>#}
+{#							<input class="file1" type="file" />#}
+{#						</div>#}
+{#					</div>#}
+					<div class="bbD">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设备序号：<input type="text" name="equipment_id"
+							class="input3" />
+					</div>
+					<div class="bbD">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设备型号：<input type="text" name="model"
+							class="input3" />
+					</div>
+					<div class="bbD">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;售出日期：<input type="text" name="sale_date"
+							class="input3" />
+					</div>
+					<div class="bbD">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 联 系 &nbsp;人：<input type="text" name="linkman"
+							class="input3" />
+					</div>
+{#					<div class="bbD">#}
+{#						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工作年限：<select class="input3"><option>1年以内</option></select>#}
+{#					</div>#}
+					<div class="bbD">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：<input class="input3" name="addr" type="text" />
+					</div>
+					<div class="bbD">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 联系电话：<input class="input3"type="text" name="contacts"/>
+					</div>
+					<div class="bbD">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 保修年限：<input class="input3" type="text" name="baoxiu"/>
+					</div>
+{#					<div class="bbD">#}
+{#						本周可约时段：<input class="input3" type="text" />#}
+{#					</div>#}
+{#					<div class="bbD">#}
+{#						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;赞数：<input#}
+{#							class="input3" type="text" />#}
+{#					</div>#}
+					<div class="bbD">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他：
+						<div class="btext2">
+							<textarea class="text2" name="other"></textarea>
+						</div>
+					</div>
+{#					<div class="bbD">#}
+{#						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;审核状态：<label><input#}
+{#							type="radio" checked="checked" name="styleshoice1" />&nbsp;未审核</label> <label><input#}
+{#							type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input#}
+{#							type="radio" name="styleshoice1" />&nbsp;不通过</label>#}
+{#					</div>#}
+{#					<div class="bbD">#}
+{#						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是否推荐：<label><input#}
+{#							type="radio" checked="checked" name="styleshoice2" />&nbsp;是</label><label><input#}
+{#							type="radio" name="styleshoice2" />&nbsp;否</label>#}
+{#					</div>#}
+					<div class="bbD">
+						<p class="bbDP">
+{#							<button class="btn_ok btn_yes" href="#">提交</button>#}
+                             <input type="submit" class="btn_ok btn_yes" value="提交">
+							<a class="btn_ok btn_no" href="/equip_map/position">取消</a>
+						</p>
+					</div>
+				</div>
+                </form>
+			</div>
+			<!-- 上传广告页面样式end -->
+		</div>
+	</div>
+</body>
+</html>
