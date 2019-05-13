@@ -61,7 +61,6 @@ def position():
     cursor.execute(sql)
     u = cursor.fetchall()
     db.close()
-    # print(u)
     return render_template('equip_position.html',u=u)
 
 @app.route('/equip_tianjia')
@@ -124,6 +123,17 @@ def machine_data():
         jsondata.append(tem)
     print(jsondata)
     return json.dumps(jsondata)
+
+@app.route('/equip_problem/threshold')
+def threshold():
+    db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    cursor = db.cursor()
+    sql = "SELECT * FROM problem_info"
+    cursor.execute(sql)
+    u = cursor.fetchall()
+    db.close()
+    print(u)
+    return render_template('threshold.html',u=u)
 
 if __name__ == '__main__':
     app.run(port=8888)
