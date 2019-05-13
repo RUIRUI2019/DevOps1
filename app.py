@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template,request,flash,redirect
+from flask import render_template,request,flash,redirect,session
 import json
 import pymysql
 import time
@@ -11,6 +11,36 @@ app.config['SECRET_KEY'] = '123456'
 @app.route('/')
 def hello_world():
     return render_template('index.html')
+
+@app.route('/login')
+def login():
+    db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    cursor = db.cursor()
+    sql = "select * from user where username=" + repr(request.args.get('username')) + " and password=" + repr(
+        request.args.get('password'))
+    print(sql)
+    try:
+        # 执行sql语句
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        print(request.args.get('password'))
+        if len(results) == 1:
+            # flash('登录成功')
+            username = request.args.get('username')
+            session['username'] = username
+            return render_template('index.html')
+        else:
+            flash('用户名或密码不正确')
+            return render_template('log.html')
+        # 提交到数据库执行
+        db.commit()
+    except:
+        # 如果发生错误则回滚
+        traceback.print_exc()
+        db.rollback()
+    # 关闭数据库连接
+    db.close()
+    return render_template('log.html')
 
 @app.route('/main')
 def main():

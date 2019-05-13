@@ -6,8 +6,8 @@
 }
 #hides{display: none;}
 .logHead img {
-	margin-left: 20%;
-	margin-top: 32px;
+	margin-left: 15%;
+	margin-top: 0px;
 }
 
 .logDiv {
@@ -26,12 +26,12 @@
 	background-color: white;
 	position: absolute;
 	top: 20%;
-	right: 20%;
+	right: 40%;
 }
 
 .logDiv .logGet .logDtip {
 	width: 88%;
-	border-bottom: 1px solid #ee7700;
+	border-bottom: 1px solid #305296;
 	margin: 0px auto;
 	margin-bottom: 40px
 }
@@ -88,7 +88,7 @@
 	font-size: 14px;
 	margin-top: 45px;
 	float: right;
-	color: #ee7700;
+	color:#305296;
 }
 
 .logDiv .logC {
@@ -100,7 +100,7 @@
 .logDiv .logC button {
 	width: 100%;
 	height: 45px;
-	background-color: #ee7700;
+	background-color: #305296;
 	border: none;
 	color: white;
 	font-size: 18px;
