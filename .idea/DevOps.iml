@@ -5,14 +5,14 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 3.5 (DevOps)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.5.2 virtualenv at C:\Users\wk\Dev" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/../DevOps\templates" />
+        <option value="$APPLICATION_HOME_DIR$/DevOps\templates" />
       </list>
     </option>
   </component>

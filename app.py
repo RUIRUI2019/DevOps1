@@ -135,5 +135,16 @@ def threshold():
     print(u)
     return render_template('threshold.html',u=u)
 
+@app.route('/system/user_manger/user_show')
+def user_show():
+    db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    cursor = db.cursor()
+    sql = "SELECT * FROM user"
+    cursor.execute(sql)
+    u = cursor.fetchall()
+    db.close()
+    # print(u)
+    return render_template('user_show.html',u=u)
+
 if __name__ == '__main__':
-    app.run(port=8888)
+    app.run(port=8888,debug=True)
