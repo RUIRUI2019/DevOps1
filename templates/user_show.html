@@ -26,23 +26,10 @@
 			<div class="connoisseur">
 				<div class="conform">
 					<form>
-                        <!--
-						<div class="cfD">
-							时间段：<input class="vinput" type="text" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-							<input class="vinput vpr" type="text" /> 审核状态：<label><input
-								type="radio" checked="checked" name="styleshoice1" />&nbsp;未审核</label> <label><input
-								type="radio" name="styleshoice1" />&nbsp;待审核</label> <label><input
-								type="radio" name="styleshoice1" />&nbsp;待约见</label> <label><input
-								type="radio" name="styleshoice1" />&nbsp;已完成</label> <label class="lar"><input
-								type="radio" name="styleshoice1" />&nbsp;已作废</label> 推荐状态：<label><input
-								type="radio" checked="checked" name="styleshoice2" />&nbsp;未付款</label> <label><input
-								type="radio" name="styleshoice2" />&nbsp;已付款</label>
-						</div>
-                        -->
 						<div class="cfD">
 							<input class="addUser" type="text" placeholder="输入用户名" />
 							<button class="button">搜索</button>
-                            <a class="addA addA1" href="/equip_map/position/position_add">添加设备</a>
+                            <a class="addA addA1" href="/equip_map/position/position_add">添加新用户</a>
 						</div>
 					</form>
 				</div>
@@ -57,25 +44,6 @@
 							<td width="300px" class="tdColor">创建时间</td>
 							<td width="300px" class="tdColor">操作</td>
 						</tr>
-                        <!--
-						<tr>
-							<td>1</td>
-							<td>
-								<div class="onsImg onsInmA">
-									<img src="/static/img/userPICS.png">
-								</div> <a class="tpapA" href="#"><p class="topicP">
-										某某话题<img class="topicImg" src="/static/img/topic.png">
-									</p></a>
-							</td>
-							<td>山下就只</td>
-							<td>未审核</td>
-							<td>未付款</td>
-							<td>2015-25-36 12:12</td>
-							<td><a href="connoisseuradd.html"><img class="operation"
-									src="/static/img/update.png"></a> <img class="operation delban"
-								src="/static/img/delete.png"></td>
-						</tr>
-						-->
                     {% for i in u %}
                     <tr style="height: 45px">
                     <td class="center">{{ i[1] }}</td>

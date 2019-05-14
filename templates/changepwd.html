@@ -3,48 +3,55 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>修改密码-绕线机网络化检测与诊断系统</title>
-<link rel="stylesheet" type="text/css" href="css/css.css" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/css.css" />
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
 </head>
-<body>
+<body >
 	<div id="pageAll">
 		<div class="pageTop">
 			<div class="page">
-				<img src="img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
-					href="#">公共管理</a>&nbsp;-</span>&nbsp;修改密码
+				<img src="/static/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+					href="#">系统管理</a>&nbsp;-</span>&nbsp;修改密码
 			</div>
 		</div>
-		<div class="page ">
+		<div class="page"style="background-image: url('/static/img/lanse.png')">
 			<!-- 修改密码页面样式 -->
-			<div class="bacen">
+			<div class="banneradd bor " >
+            <div style="margin-left: 40%;margin-top: 10%">
 				<div class="bbD">
 					&nbsp;&nbsp;&nbsp;&nbsp;管理员UID：&nbsp;&nbsp;&nbsp;&nbsp;123</div>
-				<div class="bbD">管理员用户名：&nbsp;&nbsp;&nbsp;&nbsp;123456789</div>
+				<div class="bbD">管理员用户名：&nbsp;&nbsp;&nbsp;&nbsp;{{ u }}</div>
+
+             <form method="get" action="/system/changepwd" id="chagepwd_form">
 				<div class="bbD">
-					&nbsp;&nbsp;&nbsp;&nbsp;输入旧密码：<input type="password" class="input3"
-						onblur="checkpwd1()" id="pwd1" /> <img class="imga"
-						src="img/ok.png" /><img class="imgb" src="img/no.png" />
+					&nbsp;&nbsp;&nbsp;&nbsp;输入旧密码：<input type="password" name="oldpwd" class="input3" onblur="checkpwd1()" id="pwd1" />
+                    <img class="imga" src="/static/img/ok.png" />
+                    <img class="imgb" src="/static/img/no.png" />
 				</div>
 				<div class="bbD">
-					&nbsp;&nbsp;&nbsp;&nbsp;输入新密码：<input type="password" class="input3"
-						onblur="checkpwd2()" id="pwd2" /> <img class="imga"
-						src="img/ok.png" /><img class="imgb" src="img/no.png" />
+					&nbsp;&nbsp;&nbsp;&nbsp;输入新密码：<input type="password" name="newpwd1" class="input3"onblur="checkpwd2()" id="pwd2" />
+                    <img class="imga"src="/static/img/ok.png" />
+                    <img class="imgb" src="/static/img/no.png" />
 				</div>
 				<div class="bbD">
-					再次确认密码：<input type="password" class="input3" onblur="checkpwd3()"
-						id="pwd3" /> <img class="imga" src="img/ok.png" /><img
-						class="imgb" src="img/no.png" />
+					再次确认密码：<input type="password" name="newpwd2" class="input3" onblur="checkpwd3()"id="pwd3" />
+                    <img class="imga" src="/static/img/ok.png" />
+                    <img class="imgb" src="/static/img/no.png" />
 				</div>
 				<div class="bbD">
 					<p class="bbDP">
-						<button class="btn_ok btn_yes" href="#">提交</button>
+                       <input type="submit" class="btn_ok btn_yes" value="提交"/>
 						<a class="btn_ok btn_no" href="#">取消</a>
 					</p>
 				</div>
+                 <div class="bbD" style="height: 150px">
+                     <a>&nbsp; </a>
+				</div>
+             </form>
 			</div>
-
 			<!-- 修改密码页面样式end -->
 		</div>
+        </div>
 	</div>
 </body>
 <script type="text/javascript">
