@@ -32,6 +32,7 @@ def position():
     cursor.execute(sql)
     u = cursor.fetchall()
     db.close()
+    fun()
     return render_template('equip_position.html',u=u)
 
 @app.route('/equip_tianjia')
@@ -104,6 +105,28 @@ def threshold():
     db.close()
     print(u)
     return render_template('threshold.html',u=u)
+
+def fun():
+    key_limitValue={'maxis_speed':[1000,26000],
+                    'current_yield':[300,600],
+                    'cycle_time':[200,500],
+                    'material_num':[500,800],
+                    'speed':[64000,96000],
+                    'quanshu':[80,100]}
+    db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    cursor = db.cursor()
+    while True:
+        sql = "select equipment_id,maxis_speed from equip_data where maxis_speed <{min_value}or maxis_speed " \
+              ">{max_value}".format(min_value=key_limitValue['maxis_speed'][0],max_value=key_limitValue['maxis_speed'][1])
+        print(sql)
+        try:
+            cursor.execute(sql)
+            maxis = cursor.fetchall()
+            sql = "ins"
+        except:
+            traceback.print_exc()
+            db.rollback()
+
 
 if __name__ == '__main__':
     app.run(port=8888,debug=True)

@@ -34,11 +34,19 @@
 				<img class="img1" src="/static/img/logPwd.png" /><input type="password" name="password" placeholder="输入用户密码" />
 			</div>
 			<div class="lgD logD2">
-				<input class="getYZM" type="text" />
+				<input class="getYZM" type="text" name="yanzhengma"/>
 				<div class="logYZM">
-					<img class="yzm" src="/static/img/logYZM.png" />
+{#					<img class="yzm" src="/static/img/logYZM.png" />#}
+                    <img id="verficode" src="/code" onclick="this.src='./code?'+Math.random()">
 				</div>
 			</div>
+       {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning"style="margin-left: 20%">
+            <button type="button" class="open" data-dismiss="alert" ><a style="color: yellow">&times;</a></button>
+            <a style="color: red">{{ message }}</a>
+        </div>
+       {% endfor %}
+
 			<div class="logC">
 {#                <button><input type="submit" value="登 录" ></button>#}
                 <button onclick="submits()">登录</button>
@@ -56,7 +64,7 @@
 
 	<!-- 登录页面底部 -->
 	<div class="logFoot">
-		<p class="p1">版权所有：西安交通大学</p>
+		<p class="p1">版权所有：西安交通大学自动控制研究所</p>
 	</div>
 	<!-- 登录页面底部end -->
 </body>

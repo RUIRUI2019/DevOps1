@@ -18,6 +18,12 @@
 			<!-- 修改密码页面样式 -->
 			<div class="banneradd bor " >
             <div style="margin-left: 40%;margin-top: 10%">
+             {% for message in get_flashed_messages() %}
+                <div class="alert alert-warning"style="margin-left: 20%">
+                     <button type="button" class="open" data-dismiss="alert" ><a style="color: yellow">！</a></button>
+                        <a style="color: red">{{ message }}</a>
+                </div>
+            {% endfor %}
 				<div class="bbD">
 					&nbsp;&nbsp;&nbsp;&nbsp;管理员UID：&nbsp;&nbsp;&nbsp;&nbsp;123</div>
 				<div class="bbD">管理员用户名：&nbsp;&nbsp;&nbsp;&nbsp;{{ u }}</div>

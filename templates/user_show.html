@@ -33,6 +33,12 @@
 						</div>
 					</form>
 				</div>
+            {% for message in get_flashed_messages() %}
+                <div class="alert alert-warning"style="margin-left: 20%">
+                     <button type="button" class="open" data-dismiss="alert" ><a style="color: yellow">&times;</a></button>
+                        <a style="color: red">{{ message }}</a>
+                </div>
+            {% endfor %}
 				<!-- banner 表格 显示 -->
 				<div class="conShow">
 					<table border="1" cellspacing="0" cellpadding="0">
@@ -48,12 +54,11 @@
                     <tr style="height: 45px">
                     <td class="center">{{ i[1] }}</td>
                     <td class="center">{{ i[2] }}</td>
-                    <td class="center">{{ i[3] }}</td>
                     <td class="center">{{ i[4] }}</td>
                     <td class="center">{{ i[5] }}</td>
-                    <td><a href="connoisseuradd.html"><img class="operation"
-									src="/static/img/update.png"></a> <img class="operation delban"
-								src="/static/img/delete.png"></td>
+                    <td class="center">{{ i[6] }}</td>
+{#                    <td><img class="operation delban" src="/static/img/delete.png" href="{{url_for('remove_user',username=i[1],guanli=i[5])}}"></td>#}
+                    <td class="center"><img class="operation delban" src="/static/img/delete.png" ><a name="remove" onclick="return confirm('确定要删除吗?')" href="{% if not onclick%} {{url_for('remove_user',username=i[1],guanli=i[5])}}{% endif %}">删除</a></td>
                      </tr>
               {% endfor %}
 					</table>
@@ -75,7 +80,7 @@
 			</div>
 			<p class="delP1">你确定要删除此条记录吗？</p>
 			<p class="delP2">
-				<a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+				<a class="ok yes">确定</a><a class="ok no">取消</a>
 			</p>
 		</div>
 	</div>

@@ -1,41 +1,65 @@
 from flask import Flask
-from flask import render_template,request,flash,session,redirect
+from flask import render_template,request,flash,session,redirect,url_for
 import pymysql
 import traceback
-import json
+from io import BytesIO
+import validate_code
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '123456'
 
 
+@app.route('/code')
+def get_code():
+    # 把strs发给前端,或者在后台使用session保存
+    code_img, strs = validate_code.create_validate_code()
+    buf = BytesIO()
+    code_img.save(buf, 'jpeg')
+
+    buf_str = buf.getvalue()
+    response = app.make_response(buf_str)
+    response.headers['Content-Type'] = 'image/gif'
+    session['img'] = strs.upper()
+    print(session['img'])
+    print(response)
+    return response
+
 @app.route('/',methods=['GET','POST'])
 def login():
-    db = pymysql.connect("localhost", "root", "123456", "opcdata")
-    cursor = db.cursor()
-    sql = "select * from user where username=" + repr(request.form.get('username')) + " and password=" + repr(
-        request.form.get('password'))
-    print(sql)
-    try:
-        # 执行sql语句
-        cursor.execute(sql)
-        results = cursor.fetchall()
-        print(request.form.get('password'))
-        if len(results) == 1:
-            # flash('登录成功')
-            username = request.form.get('username')
-            session['username'] = username
-            return render_template('index.html')
-        else:
-            flash('用户名或密码不正确')
+    if request.method=='POST':
+        print('post====================================')
+        print(request.form.get('yanzhengma'))
+        if session.get('img') == (request.form.get('yanzhengma')).upper():
+            db = pymysql.connect("localhost", "root", "123456", "opcdata")
+            cursor = db.cursor()
+            sql = "select * from user where username=" + repr(request.form.get('username')) + " and password=" + repr(
+                request.form.get('password'))
+            print(sql)
+            try:
+                # 执行sql语句
+                cursor.execute(sql)
+                results = cursor.fetchall()
+                print(request.form.get('password'))
+                if len(results) == 1:
+                    # flash('登录成功')
+                    username = request.form.get('username')
+                    session['username'] = username
+                    return render_template('index.html')
+                else:
+                    flash('用户名或密码不正确')
+                    return render_template('log.html')
+                # 提交到数据库执行
+                db.commit()
+            except:
+                # 如果发生错误则回滚
+                traceback.print_exc()
+                db.rollback()
+                # 关闭数据库连接
+            db.close()
             return render_template('log.html')
-        # 提交到数据库执行
-        db.commit()
-    except:
-        # 如果发生错误则回滚
-        traceback.print_exc()
-        db.rollback()
-    # 关闭数据库连接
-    db.close()
+        else:
+            flash('验证码错误，请重新输入！')
+            return render_template('log.html')
     return render_template('log.html')
 
 @app.route('/system/user_manger/user_show')
@@ -48,6 +72,20 @@ def user_show():
     db.close()
     print(u)
     return render_template('user_show.html',u=u)
+
+@app.route('/remove-user/<string:username>/<string:guanli>',methods=['GET','POST'])
+def remove_user(username,guanli):
+    if guanli=='超级管理员':
+        flash("小样！你不能删除我")
+    else:
+        db = pymysql.connect("localhost", "root", "123456", "opcdata")
+        cursor = db.cursor()
+        sql = "Delete FROM user where username="+repr(username)
+        print(sql)
+        cursor.execute(sql)
+        db.commit()
+        db.close()
+    return redirect('/system/user_manger/user_show')
 
 @app.route('/system/pwd')
 def pwd():
@@ -72,15 +110,19 @@ def changepwd():
     print(oldpwd)
     if oldpwd==realpwd:
         #更新数据库
-        sql = "update user set password="+repr(request.args.get('newpwd1'))+" where username="+repr(username)
-        print('更新'+sql)
-        try:
-            cursor.execute(sql)
-            db.commit()
-            return redirect('/system/user_manger/user_show')
-        except:
-            traceback.print_exc()
-            db.rollback()
+        if request.args.get('newpwd1') == request.args.get('newpwd2'):
+            sql = "update user set password="+repr(request.args.get('newpwd1'))+" where username="+repr(username)
+            print('更新'+sql)
+            try:
+                cursor.execute(sql)
+                db.commit()
+                return redirect('/system/user_manger/user_show')
+            except:
+                traceback.print_exc()
+                db.rollback()
+        else:
+            flash('两次密码输入不一致')
+            return redirect('/system/pwd')
     else:
         flash('原密码输入错误')
         return redirect('/system/pwd')
