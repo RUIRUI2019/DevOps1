@@ -32,7 +32,6 @@ def position():
     cursor.execute(sql)
     u = cursor.fetchall()
     db.close()
-    fun()
     return render_template('equip_position.html',u=u)
 
 @app.route('/equip_tianjia')
@@ -95,38 +94,30 @@ def machine_data():
     print(jsondata)
     return json.dumps(jsondata)
 
-@app.route('/equip_problem/threshold')
-def threshold():
+@app.route('/equip_problem/threshold0')
+def threshold0():
+    return render_template('threshold.html')
+
+@app.route('/threshold1',methods=['GET','POST'])
+def threshold1():
     db = pymysql.connect("localhost", "root", "123456", "opcdata")
     cursor = db.cursor()
     sql = "SELECT * FROM problem_info"
     cursor.execute(sql)
     u = cursor.fetchall()
     db.close()
-    print(u)
-    return render_template('threshold.html',u=u)
-
-def fun():
-    key_limitValue={'maxis_speed':[1000,26000],
-                    'current_yield':[300,600],
-                    'cycle_time':[200,500],
-                    'material_num':[500,800],
-                    'speed':[64000,96000],
-                    'quanshu':[80,100]}
-    db = pymysql.connect("localhost", "root", "123456", "opcdata")
-    cursor = db.cursor()
-    while True:
-        sql = "select equipment_id,maxis_speed from equip_data where maxis_speed <{min_value}or maxis_speed " \
-              ">{max_value}".format(min_value=key_limitValue['maxis_speed'][0],max_value=key_limitValue['maxis_speed'][1])
-        print(sql)
-        try:
-            cursor.execute(sql)
-            maxis = cursor.fetchall()
-            sql = "ins"
-        except:
-            traceback.print_exc()
-            db.rollback()
-
+    data_list = []
+    for i in u:
+        tem = {}
+        tem['equipment_id'] = i[0]
+        tem['fault_point'] = i[1]
+        tem['fault_tag'] = i[2]
+        tem['current_value'] = i[3]
+        tem['limit_value'] = i[4]
+        tem['fault_time'] = i[5]
+        data_list.append(tem)
+    print(data_list)
+    return json.dumps(data_list)
 
 if __name__ == '__main__':
     app.run(port=8888,debug=True)

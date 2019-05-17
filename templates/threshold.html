@@ -37,47 +37,74 @@
 				<!-- topic表格 显示 -->
 				<div class="conShow">
 					<table border="1" cellspacing="0" cellpadding="0">
-						<tr>
-							<td width="350px" class="tdColor">设备序号</td>
-							<td width="350px" class="tdColor">故障点</td>
-							<td width="350px" class="tdColor">当前值</td>
-							<td width="350px" class="tdColor">限制值</td>
-							<td width="350px" class="tdColor">时间</td>
-							<td width="350px" class="tdColor">操作</td>
-						</tr>
+                        <thead>
+                            <tr>
+                                <td width="350px" class="tdColor">设备序号</td>
+                                <td width="350px" class="tdColor">故障点</td>
+                                <td width="350px" class="tdColor">故障标签</td>
+                                <td width="350px" class="tdColor">当前值</td>
+                                <td width="350px" class="tdColor">限制值</td>
+                                <td width="350px" class="tdColor">时间</td>
+                                <td width="350px" class="tdColor">操作</td>
+                            </tr>
+                        </thead>
+                        <tbody id = 'tab_threshold'></tbody>
+
+                         <script type="text/javascript" src="/static/jquery.js"></script>
+                         <script>
+                         setInterval(loaddata,1000);
+                          function loaddata(){
+                              var html = '';
+                              $.ajax({
+                               url: '/threshold1',
+                               type: 'post',
+                               dataType: 'json',
+                                async:true,
+                               success: function (data) { //方法中传入的参数data为后台获取的数据
+                                   for (var i = 0; i < data.length; i++)  //data.data指的是数组，数组里是8个对象，i为数组的索引
+                                   {
+                                       var equipment_id = data[i].equipment_id;
+                                       var fault_point = data[i].fault_point;
+                                       var fault_tag = data[i].fault_tag;
+                                       var current_value = data[i].current_value;
+                                       var limit_value = data[i].limit_value;
+                                       var fault_time = data[i].fault_time;
+                                       html += '<tr height=40px><td class="center">' + equipment_id + '</td>' +
+                                           '<td class="center">' + fault_point + '</td>' +
+                                           '<td class="center">' + fault_tag + '</td>' +
+                                           '<td class="center" style="color: red">' + current_value + '</td>' +
+                                           '<td class="center">' + limit_value + '</td>' +
+                                           '<td class="center">' + fault_time + '</td>'+
+                                           '<td><a href="connoisseuradd.html"><img class="operation" src="/static/img/update.png"></a> <img class="operation delban" src="/static/img/delete.png"></td></tr>';
+                                       {#$("#tab").append(html)#}
+                                       {#html = '';#}
+                                   }
+                                   document.getElementById("tab_threshold").innerHTML= html;
+                               }
+                           })
+                          }
+                    </script>
                         <!--
 						<tr>
-							<td>1</td>
-							<td>
-								<div class="onsImg">
-									<img src="/static/img/banimg.png">
-								</div>
-								<p class="topicP">
-									某某话题<img class="topicImg" src="/static/img/topic.png">
-								</p>
-							</td>
-							<td>山下就只</td>
-							<td>CEO</td>
-							<td>南京设疑网络科技公司哈哈哈</td>
-							<td>110W</td>
-
 							<td><a href="connoisseuradd.html"><img class="operation"
 									src="/static/img/update.png"></a> <img class="operation delban"
 								src="/static/img/delete.png"></td>
 						</tr>
-						-->
-                        {% for i in u %}
-                        <tr style="height: 45px">
-                        <td class="center">{{ i[0] }}</td>
-                        <td class="center">{{ i[1] }}</td>
-                        <td class="center" style="color: red">{{ i[2] }}</td>
-                        <td class="center">{{ i[3] }}</td>
-                        <td class="center">{{ i[4] }}</td>
-                       <td><a href="connoisseuradd.html"><img class="operation"
-									src="/static/img/update.png"></a> <img class="operation delban"
-								src="/static/img/delete.png"></td>
-                        </tr>
-                        {% endfor %}
+
+{#                        {% for i in u %}#}
+{#                        <tr style="height: 45px">#}
+{#                        <td class="center">{{ i[0] }}</td>#}
+{#                        <td class="center">{{ i[1] }}</td>#}
+{#                            <td class="center">{{ i[2] }}</td>#}
+{#                        <td class="center" style="color: red">{{ i[3] }}</td>#}
+{#                        <td class="center">{{ i[4] }}</td>#}
+{#                        <td class="center">{{ i[5] }}</td>#}
+{#                       <td><a href="connoisseuradd.html"><img class="operation"#}
+{#{#									src="/static/img/update.png"></a> <img class="operation delban"#}
+{#{#								src="/static/img/delete.png"></td>#}
+{#                        </tr>#}
+{#                        {% endfor %}#}
+                        -->
 					</table>
 					<div class="paging">此处是分页</div>
 				</div>
