@@ -30,12 +30,15 @@
 
 
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-<div class="div-a" id="main1" style="width: 800px;height:500px;margin: 0 auto;"></div>
-<div class="div-b"id="main2" style="width: 800px;height:500px;margin: 0 auto;"></div>
-<div id="main3" style="width: 800px;height:500px;margin: 0 auto;"></div>
-<div id="main4" style="width: 800px;height:500px;margin: 0 auto;"></div>
-<div id="main5" style="width: 800px;height:500px;margin: 0 auto;"></div>
-
+<div id="pageAll">
+    <div class="page">
+        <div class="div-a" id="main1" style="width: 600px;height:400px;margin: 3% auto;margin-right: 3%"></div>
+{#        <div class="div-b"id="main2" style="width: 600px;height:400px;margin:  3% auto;"></div>#}
+{#        <div class="div-a"id="main3" style="width: 600px;height:400px;margin: 3% auto;margin-right: 3%"></div>#}
+{#        <div class="div-b"id="main4" style="width: 600px;height:400px;margin:  3% auto;"></div>#}
+{#        <div class="div-a"id="main5" style="width: 600px;height:400px;margin:  3% auto;"></div>#}
+    </div>
+</div>
 <script type="text/javascript">
 
     // 基于准备好的dom，初始化echarts实例
@@ -49,20 +52,22 @@
     // 指定图表的配置项和数据
         var option1 = {
             title: {
-                text: 'ECharts 入门示例'
+                text: '设备故障率'
             },
             tooltip: {},
             legend: {
-                data:['销量']
+                data:['故障率']
             },
             xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                data: ["GRM231","GRM350","GRM351","GRM352","GRM353","GRM354","GRM356","GRM357","GRM358","GRM359"],
+                //type:"category",
+                "axisLabel":{interval:0,rotate:-90 }
             },
             yAxis: {},
             series: [{
-                name: '销量',
+                name: '故障率',
                 type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
+                data: [5, 20, 36, 10, 10, 20,10,12,19,25]
             }]
         };
 
