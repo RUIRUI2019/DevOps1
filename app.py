@@ -4,6 +4,7 @@ import json
 import pymysql
 import time
 import traceback
+from user_manage import log_record
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '123456'
@@ -52,6 +53,8 @@ def equip_tianjia():
         # 执行sql语句
         cursor.execute(sql)
         db.commit()
+        do_thing = "用户：{yonghu}，进行了添加设备操作".format(yonghu=session.get('username'))
+        log_record(do_thing=do_thing)
         return redirect('/equip_map/position')
     except:
         # 如果发生错误则回滚

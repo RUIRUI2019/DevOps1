@@ -44,6 +44,7 @@ def fun(key_limitValue):
                     print ("id_res=====================",id_res)
                     for j in maxis:
                         if j[0] in id_res:
+                            # j[0] = j[0].split('')
                             #update操作
                             sql = "update problem_info set current_value ={current_value},fault_time={fault_time} where equipment_id={equipment_id}" \
                                   " and fault_tag ='maxis_speed'".format(current_value=j[1],fault_time='\''+str(time.strftime('%Y.%m.%d %H:%M:%S',time.localtime(time.time()))+'\''),equipment_id='\''+str(j[0])+'\'')
