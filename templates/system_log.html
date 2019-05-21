@@ -4,7 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>系统管理-绕线机网络化检测与诊断系统</title>
 <link rel="stylesheet" type="text/css" href="/static/css/css.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/mricode.pagination.css" />
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/mricode.pagination.js"></script>
 <!-- <script type="text/javascript" src="js/page.js" ></script> -->
  <style>
     table tr:nth-child(even){
@@ -44,7 +46,7 @@
 							<td width="350px" class="tdColor"  style="background: #2a9cdd;color: white;font-size: 17px">用户IP地址</td>
 							<td width="350px" class="tdColor" style="background: #2a9cdd;color: white;font-size: 17px">操作时间</td>
 						</tr>
-				{% for i in u %}
+				{% for i in datas.user_list %}
                     <tr style="height: 45px">
                         <td class="center">{{ i[0] }}</td>
                         <td class="center">{{ i[1] }}</td>
@@ -54,7 +56,32 @@
                     </tr>
                 {% endfor %}
 					</table>
-					<div class="paging">此处是分页</div>
+					<div style="float: right;margin-right: 7%;margin-top: 10px">
+                        <table border="1" cellspacing="0" cellpadding="0">
+                        <tr style="height: 40px;color: blue">
+                        {% if datas.show_shouye_status==1%}
+                          <td  style="width: 40px;"><a href='/system/system_log?p=1'>首页</a></td>
+                          <td class=''><a href='/system/system_log?p={{datas.p-1}}'>上一页</a></td>
+                       {%endif%}
+
+                        {% for dic in datas.dic_list %}
+                          {% if dic==datas.p%}
+                              <td style="width: 40px;"><a href="/system/system_log?p={{dic}}" rel="external nofollow" rel="external nofollow" >{{dic}}</a></td>
+                          {%else%}
+                            <td style="width: 40px;"><a href="/system/system_log?p={{dic}}" rel="external nofollow" rel="external nofollow" >{{dic}}</a></td>
+                          {%endif%}
+                        {%endfor%}
+
+                        {% if datas.p < datas.total%}
+                          <td class=''><a href='/system/system_log?p={{datas.p+1}}'>下一页</a></td>
+                          <td style="width: 40px;"><a href='/system/system_log?p={{datas.total}}'>尾页</a></td>
+                        {%endif%}
+                            <td>共{{datas.total}}页</td>
+                        </tr>
+                        </table>
+                    </div>
+{#                <div  class="col-md-8 m-pagination" id="paginator" style="right: 10px">#}
+            </div>
 				</div>
 				<!-- wish 表格 显示 end-->
 			</div>
@@ -78,6 +105,14 @@
 	</div>
 	<!-- 删除弹出框  end-->
 </body>
+{#<script src="/static/js/common.js"></script>#}
+{#<script src="/static/js/account.js"></script>#}
+{#<script type="text/javascript">#}
+{#  var pageData = [];#}
+{#  pageData.push({'pageSize': '10', 'total': '1000', 'pageIndex': '0'});#}
+{#  Common.paginator("#paginator", pageData);#}
+{#  Account.bindFancyBox();#}
+{#</script>#}
 
 <script type="text/javascript">
 // 广告弹出框

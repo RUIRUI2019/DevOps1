@@ -6,6 +6,7 @@ from io import BytesIO
 import validate_code
 import time
 import socket
+import math
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '123456'
@@ -148,17 +149,44 @@ def logout():
         return redirect('/')
     else:
         return redirect('/')
-
-@app.route('/system/system_log')
+#
+@app.route('/system/system_log',methods=['GET','POST'])
 def system_log():
+    p = request.args.get("p", '')  # 页数
+    show_shouye_status = 0  # 显示首页状态
+
+    if p == '':
+        p = 1
+    else:
+        p = int(p)
+        if p > 1:
+            show_shouye_status = 1
+
+    limit_start = (int(p) - 1) * 13  # 起始
+
     db = pymysql.connect("localhost", "root", "123456", "opcdata")
     cursor = db.cursor()
-    sql = "SELECT * FROM log_info"
+    sql = "SELECT * FROM log_info limit {0},13".format(limit_start)
     cursor.execute(sql)
-    u = cursor.fetchall()
-    db.close()
-    print(u)
-    return render_template('system_log.html',u=u)
+    user_list = cursor.fetchall()
+    print("user_list-------------------------------",user_list)
+
+    sql = "select count(id) as total from log_info"
+    cursor.execute(sql)
+    count = cursor.fetchone()  # 总记录
+    print("count-------------------------------", count)
+    total = int(math.ceil(count[0] / 13.0))  # 总页数
+
+    dic = get_page(total, p)
+    datas = {
+        'user_list': user_list,
+        'p': int(p),
+        'total': total,
+        'show_shouye_status': show_shouye_status,
+        'dic_list': dic
+
+    }
+    return render_template("system_log.html", datas=datas)
 
 #日志记录函数
 def log_record(do_thing):
@@ -176,3 +204,29 @@ def log_record(do_thing):
     except:
         traceback.print_exc()
         db.rollback()
+
+def get_page(total,p):
+  show_page = 5  # 显示的页码数
+  pageoffset = 2 # 偏移量
+  start = 1  #分页条开始
+  end = total #分页条结束
+
+  if total > show_page:
+    if p > pageoffset:
+      start = p - pageoffset
+      if total > p + pageoffset:
+        end = p + pageoffset
+      else:
+        end = total
+    else:
+      start = 1
+      if total > show_page:
+        end = show_page
+      else:
+        end = total
+    if p + pageoffset > total:
+      start = start - (p + pageoffset - end)
+  #用于模版中循环
+  dic = range(start, end + 1)
+  return dic
+

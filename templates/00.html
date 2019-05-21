@@ -1,125 +1,128 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<meta name="keywords" content="°Ù¶ÈµØÍ¼,°Ù¶ÈµØÍ¼API£¬°Ù¶ÈµØÍ¼×Ô¶¨Òå¹¤¾ß£¬°Ù¶ÈµØÍ¼Ëù¼û¼´ËùµÃ¹¤¾ß" />
-<meta name="description" content="°Ù¶ÈµØÍ¼API×Ô¶¨ÒåµØÍ¼£¬°ïÖúÓÃ»§ÔÚ¿ÉÊÓ»¯²Ù×÷ÏÂÉú³É°Ù¶ÈµØÍ¼" />
-<title>°Ù¶ÈµØÍ¼API×Ô¶¨ÒåµØÍ¼</title>
-<!--ÒıÓÃ°Ù¶ÈµØÍ¼API-->
-<style type="text/css">
-    html,body{margin:0;padding:0;}
-    .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
-    .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ç³»ç»Ÿç®¡ç†-ç»•çº¿æœºç½‘ç»œåŒ–æ£€æµ‹ä¸è¯Šæ–­ç³»ç»Ÿ</title>
+<link rel="stylesheet" type="text/css" href="/static/css/css.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/mricode.pagination.css" />
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/mricode.pagination.js"></script>
+<!-- <script type="text/javascript" src="js/page.js" ></script> -->
+ <style>
+    table tr:nth-child(even){
+          background: rgba(144, 90, 236, 0.13);
+    }
 </style>
-<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 </head>
 
 <body>
-  <!--°Ù¶ÈµØÍ¼ÈİÆ÷-->
-  <div style="width:697px;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page">
+				<img src="/static/img/coin02.png" /><span><a href="/main">é¦–é¡µ</a>&nbsp;-&nbsp;<a
+					href="#">ç³»ç»Ÿç®¡ç†</a>&nbsp;-</span>&nbsp;ç³»ç»Ÿæ“ä½œæ—¥å¿—
+			</div>
+		</div>
+
+		<div class="page">
+			<!-- wishé¡µé¢æ ·å¼ -->
+			<div class="wish">
+				<div class="conform">
+					<form>
+						<div class="cfD">
+							æ—¶é—´ï¼š<input class="vinput" type="text" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+							<input class="vinput" type="text" /> <input class="addUser"type="text" placeholder="è¾“å…¥ç”¨æˆ·å" />
+							<button class="button">æœç´¢</button>
+						</div>
+					</form>
+				</div>
+				<!-- wish è¡¨æ ¼ æ˜¾ç¤º -->
+				<div class="wishShow">
+					<table border="1" cellspacing="0" cellpadding="0">
+						<tr style="font-size: 20px">
+							<td width="100px" class="tdColor" style="background: #2a9cdd;color: white;font-size: 17px">åºå·</td>
+							<td width="250px" class="tdColor"  style="background: #2a9cdd;color: white;font-size: 17px">ç”¨æˆ·å</td>
+							<td width="500px" class="tdColor" style="background: #2a9cdd;color: white;font-size: 17px">æ—¥å¿—è¯¦æƒ…</td>
+							<td width="350px" class="tdColor"  style="background: #2a9cdd;color: white;font-size: 17px">ç”¨æˆ·IPåœ°å€</td>
+							<td width="350px" class="tdColor" style="background: #2a9cdd;color: white;font-size: 17px">æ“ä½œæ—¶é—´</td>
+						</tr>
+				{% for i in datas.user_list %}
+                    <tr style="height: 45px">
+                        <td class="center">{{ i[0] }}</td>
+                        <td class="center">{{ i[1] }}</td>
+                        <td class="center">{{ i[2] }}</td>
+                        <td class="center">{{ i[4] }}</td>
+                        <td class="center">{{ i[3] }}</td>
+                    </tr>
+                {% endfor %}
+					</table>
+					<div class="paging">
+                        <ul class="pagination">
+                        {% if datas.show_shouye_status==1%}
+                          <li class=''><a href='/system/system_log?p=1'>é¦–é¡µ</a></li>
+                          <li class=''><a href='/system/system_log?p={{datas.p-1}}'>ä¸Šä¸€é¡µ</a></li>
+                       {%endif%}
+
+                        {% for dic in datas.dic_list %}
+                          {% if dic==datas.p%}
+                            <li class="active"><a href="/system/system_log?p={{dic}}" rel="external nofollow" rel="external nofollow" >{{dic}}</a></li>
+                          {%else%}
+                            <li><a href="/system/system_log?p={{dic}}" rel="external nofollow" rel="external nofollow" >{{dic}}</a></li>
+                          {%endif%}
+                        {%endfor%}
+
+                        {% if datas.p < datas.total%}
+                          <li class=''><a href='/system/system_log?p={{datas.p+1}}'>ä¸‹ä¸€é¡µ</a></li>
+                          <li class=''><a href='/system/system_log?p={{datas.total}}'>å°¾é¡µ</a></li>
+                        {%endif%}
+                          å…±{{datas.total}}é¡µ
+                        </ul>
+                    </div>
+{#                <div  class="col-md-8 m-pagination" id="paginator" style="right: 10px">#}
+            </div>
+				</div>
+				<!-- wish è¡¨æ ¼ æ˜¾ç¤º end-->
+			</div>
+			<!-- wishé¡µé¢æ ·å¼end -->
+		</div>
+
+	</div>
+
+
+	<!-- åˆ é™¤å¼¹å‡ºæ¡† -->
+	<div class="banDel">
+		<div class="delete">
+			<div class="close">
+				<a><img src="/static/img/shanchu.png" /></a>
+			</div>
+			<p class="delP1">ä½ ç¡®å®šè¦åˆ é™¤æ­¤æ¡è®°å½•å—ï¼Ÿ</p>
+			<p class="delP2">
+				<a href="#" class="ok yes">ç¡®å®š</a><a class="ok no">å–æ¶ˆ</a>
+			</p>
+		</div>
+	</div>
+	<!-- åˆ é™¤å¼¹å‡ºæ¡†  end-->
 </body>
+{#<script src="/static/js/common.js"></script>#}
+{#<script src="/static/js/account.js"></script>#}
+{#<script type="text/javascript">#}
+{#  var pageData = [];#}
+{#  pageData.push({'pageSize': '10', 'total': '1000', 'pageIndex': '0'});#}
+{#  Common.paginator("#paginator", pageData);#}
+{#  Account.bindFancyBox();#}
+{#</script>#}
+
 <script type="text/javascript">
-    //´´½¨ºÍ³õÊ¼»¯µØÍ¼º¯Êı£º
-    function initMap(){
-        createMap();//´´½¨µØÍ¼
-        setMapEvent();//ÉèÖÃµØÍ¼ÊÂ¼ş
-        addMapControl();//ÏòµØÍ¼Ìí¼Ó¿Ø¼ş
-        addMarker();//ÏòµØÍ¼ÖĞÌí¼Ómarker
-    }
-
-    //´´½¨µØÍ¼º¯Êı£º
-    function createMap(){
-        var map = new BMap.Map("dituContent");//ÔÚ°Ù¶ÈµØÍ¼ÈİÆ÷ÖĞ´´½¨Ò»¸öµØÍ¼
-        var point = new BMap.Point(104.636035,36.557584);//¶¨ÒåÒ»¸öÖĞĞÄµã×ø±ê
-        map.centerAndZoom(point,5);//Éè¶¨µØÍ¼µÄÖĞĞÄµãºÍ×ø±ê²¢½«µØÍ¼ÏÔÊ¾ÔÚµØÍ¼ÈİÆ÷ÖĞ
-        window.map = map;//½«map±äÁ¿´æ´¢ÔÚÈ«¾Ö
-    }
-
-    //µØÍ¼ÊÂ¼şÉèÖÃº¯Êı£º
-    function setMapEvent(){
-        map.enableDragging();//ÆôÓÃµØÍ¼ÍÏ×§ÊÂ¼ş£¬Ä¬ÈÏÆôÓÃ(¿É²»Ğ´)
-        map.enableScrollWheelZoom();//ÆôÓÃµØÍ¼¹öÂÖ·Å´óËõĞ¡
-        map.enableDoubleClickZoom();//ÆôÓÃÊó±êË«»÷·Å´ó£¬Ä¬ÈÏÆôÓÃ(¿É²»Ğ´)
-        map.enableKeyboard();//ÆôÓÃ¼üÅÌÉÏÏÂ×óÓÒ¼üÒÆ¶¯µØÍ¼
-    }
-
-    //µØÍ¼¿Ø¼şÌí¼Óº¯Êı£º
-    function addMapControl(){
-        //ÏòµØÍ¼ÖĞÌí¼ÓËõ·Å¿Ø¼ş
-	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
-	map.addControl(ctrl_nav);
-        //ÏòµØÍ¼ÖĞÌí¼ÓËõÂÔÍ¼¿Ø¼ş
-	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
-	map.addControl(ctrl_ove);
-        //ÏòµØÍ¼ÖĞÌí¼Ó±ÈÀı³ß¿Ø¼ş
-	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
-	map.addControl(ctrl_sca);
-    }
-
-    //±ê×¢µãÊı×é
-    var markerArr = [{title:"ÎÒµÄ±ê¼Ç",content:"ÎÒµÄ±¸×¢",point:"88.40962|38.952826",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"ÎÒµÄ±ê¼Ç",content:"ÎÒµÄ±¸×¢",point:"92.162668|30.77797",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"ÎÒµÄ±ê¼Ç",content:"ÎÒµÄ±¸×¢",point:"82.375306|34.451622",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"ÎÒµÄ±ê¼Ç",content:"ÎÒµÄ±¸×¢",point:"99.742354|34.755876",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"ÎÒµÄ±ê¼Ç",content:"ÎÒµÄ±¸×¢",point:"109.676895|39.752704",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"ÎÒµÄ±ê¼Ç",content:"ÎÒµÄ±¸×¢",point:"107.469219|26.825023",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"ÎÒµÄ±ê¼Ç",content:"ÎÒµÄ±¸×¢",point:"115.416851|32.478013",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"ÎÒµÄ±ê¼Ç",content:"ÎÒµÄ±¸×¢",point:"124.100375|44.777339",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ];
-    //´´½¨marker
-    function addMarker(){
-        for(var i=0;i<markerArr.length;i++){
-            var json = markerArr[i];
-            var p0 = json.point.split("|")[0];
-            var p1 = json.point.split("|")[1];
-            var point = new BMap.Point(p0,p1);
-			var iconImg = createIcon(json.icon);
-            var marker = new BMap.Marker(point,{icon:iconImg});
-			var iw = createInfoWindow(i);
-			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
-			marker.setLabel(label);
-            map.addOverlay(marker);
-            label.setStyle({
-                        borderColor:"#808080",
-                        color:"#333",
-                        cursor:"pointer"
-            });
-
-			(function(){
-				var index = i;
-				var _iw = createInfoWindow(i);
-				var _marker = marker;
-				_marker.addEventListener("click",function(){
-				    this.openInfoWindow(_iw);
-			    });
-			    _iw.addEventListener("open",function(){
-				    _marker.getLabel().hide();
-			    })
-			    _iw.addEventListener("close",function(){
-				    _marker.getLabel().show();
-			    })
-				label.addEventListener("click",function(){
-				    _marker.openInfoWindow(_iw);
-			    })
-				if(!!json.isOpen){
-					label.hide();
-					_marker.openInfoWindow(_iw);
-				}
-			})()
-        }
-    }
-    //´´½¨InfoWindow
-    function createInfoWindow(i){
-        var json = markerArr[i];
-        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
-        return iw;
-    }
-    //´´½¨Ò»¸öIcon
-    function createIcon(json){
-        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
-        return icon;
-    }
-
-    initMap();//´´½¨ºÍ³õÊ¼»¯µØÍ¼
+// å¹¿å‘Šå¼¹å‡ºæ¡†
+$(".delban").click(function(){
+  $(".banDel").show();
+});
+$(".close").click(function(){
+  $(".banDel").hide();
+});
+$(".no").click(function(){
+  $(".banDel").hide();
+});
+// å¹¿å‘Šå¼¹å‡ºæ¡† end
 </script>
 </html>
