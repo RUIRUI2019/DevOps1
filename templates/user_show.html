@@ -27,8 +27,8 @@
 				<div class="conform">
 					<form>
 						<div class="cfD">
-							<input class="addUser" type="text" placeholder="输入用户名" />
-							<button class="button">搜索</button>
+							<input class="addUser"type="text" id="searchtext" placeholder="输入用户名" />
+							<input type="button" class="button" id="search"value="搜索"/>
                             <a class="addA addA1" href="/equip_map/position/position_add">添加新用户</a>
 						</div>
 					</form>
@@ -41,7 +41,7 @@
             {% endfor %}
 				<!-- banner 表格 显示 -->
 				<div class="conShow">
-					<table border="1" cellspacing="0" cellpadding="0">
+					<table border="1" cellspacing="0" cellpadding="0" id="table">
 						<tr>
 							<td width="300px" class="tdColor">用户名</td>
 							<td width="300px" class="tdColor">邮箱</td>
@@ -87,7 +87,18 @@
 	<!-- 删除弹出框  end-->
 </body>
 
+
 <script type="text/javascript">
+
+    // 通过点击按钮开始筛选
+		$(function(){
+			$('#search').click(function(){
+				var text = $('#searchtext').val();//获取文本框输入
+				if($.trim(text) != ""){
+					$("#table tr:gt(0)").hide().filter(":contains('"+text+"')").show();
+				}
+			})
+		});
 // 广告弹出框
 $(".delban").click(function(){
   $(".banDel").show();

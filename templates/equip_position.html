@@ -38,15 +38,15 @@
 						</div>
 						-->
 						<div class="cfD">
-							<input class="addUser" type="text" placeholder="输入设备ID" />
-							<button class="button">搜索</button>
+							<input class="addUser"type="text" id="searchtext" placeholder="输入设备id" />
+							<input type="button" class="button" id="search"value="搜索"/>
 							<a class="addA addA1" href="/equip_map/position/position_add">添加设备</a>
 						</div>
 					</form>
 				</div>
 				<!-- banner 表格 显示 -->
 				<div class="conShow">
-					<table border="1" cellspacing="0" cellpadding="0">
+					<table border="1" cellspacing="0" cellpadding="0" id="table">
 						<tr>
 							<td width="445px" class="tdColor">设备序号</td>
 							<td width="445px" class="tdColor">设备型号</td>
@@ -140,6 +140,17 @@
 </body>
 
 <script type="text/javascript">
+
+// 通过点击按钮开始筛选
+		$(function(){
+			$('#search').click(function(){
+				var text = $('#searchtext').val();//获取文本框输入
+				if($.trim(text) != ""){
+					$("#table tr:gt(0)").hide().filter(":contains('"+text+"')").show();
+				}
+			})
+		});
+
 // 广告弹出框
 $(".delban").click(function(){
   $(".banDel").show();

@@ -28,16 +28,15 @@
 				<div class="conform">
 					<form>
 						<div class="cfD">
-							<input class="addUser" type="text" placeholder="设备id" />
-							<button class="button">搜索</button>
+							<input class="addUser"type="text" id="searchtext" placeholder="输入设备id" />
+							<input type="button" class="button" id="search"value="搜索"/>
 							<!-- <a class="addA addA1" href="topicadd.html">添加话题+</a>-->
 						</div>
 					</form>
 				</div>
 				<!-- topic表格 显示 -->
 				<div class="conShow">
-					<table border="1" cellspacing="0" cellpadding="0">
-                        <thead>
+					<table border="1" cellspacing="0" cellpadding="0" id="table">
                             <tr>
                                 <td width="350px" class="tdColor">设备序号</td>
                                 <td width="350px" class="tdColor">故障点</td>
@@ -47,7 +46,6 @@
                                 <td width="350px" class="tdColor">时间</td>
                                 <td width="350px" class="tdColor">操作</td>
                             </tr>
-                        </thead>
                         <tbody id = 'tab_threshold'></tbody>
 
                          <script type="text/javascript" src="/static/jquery.js"></script>
@@ -132,6 +130,15 @@
 </body>
 
 <script type="text/javascript">
+    // 通过点击按钮开始筛选
+		$(function(){
+			$('#search').click(function(){
+				var text = $('#searchtext').val();//获取文本框输入
+				if($.trim(text) != ""){
+					$("#table tr:gt(0)").hide().filter(":contains('"+text+"')").show();
+				}
+			})
+		});
 // 广告弹出框
 $(".delban").click(function(){
   $(".banDel").show();
