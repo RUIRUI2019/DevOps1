@@ -122,5 +122,22 @@ def threshold1():
     print(data_list)
     return json.dumps(data_list)
 
+@app.route('/bar_data',methods=['GET','POST'])
+def bar_data():
+    db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    cursor = db.cursor()
+    sql = "SELECT * FROM fault_rate"
+    cursor.execute(sql)
+    u = cursor.fetchall()
+    db.close()
+    data_list = []
+    for i in u:
+        tem = {}
+        tem['equipment_id'] = i[0]
+        tem['rate'] = i[1]
+        data_list.append(tem)
+    print(data_list)
+    return json.dumps(data_list)
+
 if __name__ == '__main__':
     app.run(port=8888,debug=True)

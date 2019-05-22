@@ -1,90 +1,88 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>绕线机网络化检测与诊断系统</title>
-<link rel="stylesheet" type="text/css" href="/static/css/css.css" />
-<script src="{{ url_for('static', filename='echarts.min.js') }}"></script>
-</head>
+        $.ajax({
+         url: '/bar_data',
+         type: 'post',
+         dataType: 'json',
+          async:true,
+         success : function(result) {
+             console.log(result)
+             if (result)
+             { //把result(即Json数据)以参数形式放入Echarts代码中
+                bind(result);
+             }
+             },
+         error : function(errorMsg) { alert("加载数据失败"); }
 
-{#<body>#}
-{#	<div id="pageAll">#}
-{#		<div class="page">#}
-{#			<!-- main页面样式#}
-{#			<div class="indexL">#}
-{#				<img class="indexBn" src="/static/img/dev2.jpg" /><br>#}
-{#			</div>#}
-{#			-->#}
-{#		</div>#}
-{#	</div>#}
-{#</body>#}
-<style>
-.div-a{ float:left;width:49%;border:1px solid #F00}
-.div-b{ float:left;width:49%;border:1px solid #000}
-</style>
-
-<body>
-
-
-
-
-
-<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-<div id="pageAll">
-    <div class="page">
-        <div class="div-a" id="main1" style="width: 600px;height:400px;margin: 3% auto;margin-right: 3%"></div>
-        <div class="div-b"id="main2" style="width: 600px;height:400px;margin:  3% auto;"></div>
-        <div class="div-a"id="main3" style="width: 600px;height:400px;margin: 3% auto;margin-right: 3%"></div>
-        <div class="div-b"id="main4" style="width: 600px;height:400px;margin:  3% auto;"></div>
-        <div class="div-a"id="main5" style="width: 600px;height:400px;margin:  3% auto;"></div>
-    </div>
-</div>
-<script type="text/javascript">
+     });
 
     // 基于准备好的dom，初始化echarts实例
-    var myChart1 = echarts.init(document.getElementById('main1'));
-
+    //var myChart1 = echarts.init(document.getElementById('main1'));
     var myChart2 = echarts.init(document.getElementById('main2'));
     var myChart3 = echarts.init(document.getElementById('main3'));
     var myChart4 = echarts.init(document.getElementById('main4'));
     var myChart5 = echarts.init(document.getElementById('main5'));
+function bind(result) {
+    var myChart1 = echarts.init(document.getElementById('main1'));
+    myChart1.showLoading()
+    var option1 = {
 
-    // 指定图表的配置项和数据
-        var option1 = {
-            title: {
-                text: '设备故障率'
-            },
-            tooltip: {show: true},
-            legend: {
-                data:[{name:"故障率",
-                }]
+        title: {
+            text: '设备故障率'
+        },
+        tooltip: {show: true},
+        legend: {
+            data: [{
+                name: "故障率",
+            }]
 
-            },
-            xAxis: {
-                data: ["GRM231","GRM350","GRM351","GRM352","GRM353","GRM354","GRM356","GRM357","GRM358","GRM359"],
-                type:"category",
-                name:"设备",
-                "axisLabel":{interval:0,rotate:-90 }
-            },
-            yAxis: {name:"故障率%"},
-            series: [
-                {
-                    name: '故障率',
-                    type: 'bar',
-                    legendHoverLink: true,
-                    label: {
-                        normal: {
-                            show: true,
-                            position: 'top'
+        },
+        xAxis: {
+            data:(function(){
+                    var res = [];
+                    var len = result.length;
+                        for(var i = 0; i < len; i++) {
+                         res.push(result[i].equipment_id);
                         }
-                    },
-                    itemStyle:{normal:{color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}}},
-                    data: [5, 20, 36, 10, 10, 20, 10, 12, 19, 32],
-                }
-           ]
-        };
+                        return res;
+                })(),
+            type: "category",
+            name: "设备",
+            "axisLabel": {interval: 0, rotate: -90}
+        },
+        yAxis: {name: "故障率%"},
+        series: [
+            {
+                name: '故障率',
+                type: 'bar',
+                legendHoverLink: true,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: function (d) {
+                            return "#" + Math.floor(Math.random() * (256 * 256 * 256 - 1)).toString(16);
+                        }
+                    }
+                },
+                data:(function(){
+                    var res = [];
+                    var len = result.length;
+                        for(var i = 0; i < len; i++) {
+                         res.push(result[i].rate);
+                        }
+                        return res;
+                })(),
+            }
+        ]
+    };
 
+    myChart1.setOption(option1);
+    myChart1.hideLoading()
 
+}
 
         var   option2 = {
                 title : {
@@ -163,8 +161,8 @@
 
         var   option3 = {
             title : {
-                text: '某站点用户访问来源',
-                subtext: '纯属虚构',
+                text: '绕线机故障主要原因历史数据统计',
+                subtext: '近30天数据统计',
                 x:'center'
             },
             tooltip : {
@@ -174,29 +172,18 @@
             legend: {
                 orient : 'vertical',
                 x : 'left',
-                data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+                data:['自动上下料机构','张力器','运动控制器','主轴箱','压线机构']
             },
-            toolbox: {
-                show : true,
-                feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {
-                        show: true,
-                        type: ['pie', 'funnel'],
-                        option: {
-                            funnel: {
-                                x: '25%',
-                                width: '50%',
-                                funnelAlign: 'left',
-                                max: 1548
-                            }
-                        }
-                    },
-                    restore : {show: true},
-                    saveAsImage : {show: true}
-                }
-            },
+           toolbox: {
+	            show : true,
+	            feature : {
+	                mark : {show: true},
+	                dataView : {show: true, readOnly: false},
+	                magicType : {show: true, type: ['line', 'bar']},
+	                // restore : {show: true},
+	                // saveAsImage : {show: true}
+	            }
+	        },
             calculable : true,
             series : [
                 {
@@ -205,11 +192,11 @@
                     radius : '55%',
                     center: ['50%', '60%'],
                     data:[
-                        {value:335, name:'直接访问'},
-                        {value:310, name:'邮件营销'},
-                        {value:234, name:'联盟广告'},
-                        {value:135, name:'视频广告'},
-                        {value:1548, name:'搜索引擎'}
+                        {value:335, name:'自动上下料机构'},
+                        {value:310, name:'张力器'},
+                        {value:234, name:'运动控制器'},
+                        {value:135, name:'主轴箱'},
+                        {value:1548, name:'压线机构'}
                     ]
                 }
             ]
@@ -454,71 +441,3 @@
                     }
                 ]
             };
-
-
-
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart1.setOption(option1);
-    myChart2.setOption(option2);
-    myChart3.setOption(option3);
-    myChart4.setOption(option4);
-    myChart5.setOption(option5);
-</script>
-</body>
-</html>
-
-
-<script type="text/javascript">
-
-//JS成功后的代码
-function bind(result){
-    // 基于准备好的dom，初始化echarts图表
-    var TypeSalesChart = echarts.init(document.getElementById('main'));
-    var option = {
-        tooltip : {
-        trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
-     },
-    legend: {
-            orient : 'vertical',
-            x : 'left',
-            data:(function(){
-                    var res = [];
-                    var len = result.length;
-                        for(var i=0,size=len;i<size;i++) {
-                         res.push({
-                             name: result[i].typeName,
-                         });
-                        }
-                        return res;
-                })()
-
-        },
-        series : [
-            {
-                name:'访问来源',
-                type:'pie',
-                radius : '55%',
-                center: ['50%', '60%'],
-                data:(function(){
-                    var res = [];
-                    var len = result.length;
-                        for(var i=0,size=len;i<size;i++) {
-                         res.push({
-                             //通过把result进行遍历循环来获取数据并放入Echarts中
-                             name: result[i].typeName,
-                             value: result[i].sales
-                         });
-                        }
-                        return res;
-                })()
-            }
-        ]
-    };
-    // 为echarts对象加载数据
-    TypeSalesChart.setOption(option);
-}
-
-</script>
-
