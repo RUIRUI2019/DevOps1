@@ -64,7 +64,7 @@
                         <tr style="height: 40px;color: blue">
                         {% if datas.show_shouye_status==1%}
                           <td  style="width: 40px;"><a href='/system/system_log?p=1'>首页</a></td>
-                          <td class=''><a href='/system/system_log?p={{datas.p-1}}'>上一页</a></td>
+                          <td class=''><a href='/system/system_log?p={{datas.p-1}}'><<</a></td>
                        {%endif%}
 
                         {% for dic in datas.dic_list %}
@@ -76,7 +76,7 @@
                         {%endfor%}
 
                         {% if datas.p < datas.total%}
-                          <td class=''><a href='/system/system_log?p={{datas.p+1}}'>下一页</a></td>
+                          <td class=''><a href='/system/system_log?p={{datas.p+1}}'>>></a></td>
                           <td style="width: 40px;"><a href='/system/system_log?p={{datas.total}}'>尾页</a></td>
                         {%endif%}
                             <td>共{{datas.total}}页</td>

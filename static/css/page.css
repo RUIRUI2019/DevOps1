@@ -23,6 +23,8 @@
 .logDiv .logGet {
 	width: 368px;
 	height: 408px;
+	/*width: 21%;*/
+	/*height: 62%;*/
 	background-color: white;
 	position: absolute;
 	top: 20%;
