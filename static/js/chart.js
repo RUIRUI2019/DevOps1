@@ -16,8 +16,8 @@
 
     // 基于准备好的dom，初始化echarts实例
     //var myChart1 = echarts.init(document.getElementById('main1'));
-    var myChart2 = echarts.init(document.getElementById('main2'));
-    var myChart3 = echarts.init(document.getElementById('main3'));
+    var myChart2 = echarts.init(document.getElementById('main3'));
+    var myChart3 = echarts.init(document.getElementById('main2'));
     var myChart4 = echarts.init(document.getElementById('main4'));
     var myChart5 = echarts.init(document.getElementById('main5'));
 function bind(result) {
@@ -35,6 +35,16 @@ function bind(result) {
             }]
 
         },
+        toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
         xAxis: {
             data:(function(){
                     var res = [];
@@ -175,15 +185,15 @@ function bind(result) {
                 data:['自动上下料机构','张力器','运动控制器','主轴箱','压线机构']
             },
            toolbox: {
-	            show : true,
-	            feature : {
-	                mark : {show: true},
-	                dataView : {show: true, readOnly: false},
-	                magicType : {show: true, type: ['line', 'bar']},
-	                // restore : {show: true},
-	                // saveAsImage : {show: true}
-	            }
-	        },
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
             calculable : true,
             series : [
                 {
@@ -218,7 +228,7 @@ function bind(result) {
                 feature : {
                     mark : {show: true},
                     dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    magicType : {show: true, type: ['line', 'bar']},
                     restore : {show: true},
                     saveAsImage : {show: true}
                 }

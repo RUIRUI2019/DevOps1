@@ -50,7 +50,7 @@
 							<td width="300px" class="tdColor">创建时间</td>
 							<td width="300px" class="tdColor">操作</td>
 						</tr>
-                    {% for i in u %}
+                    {% for i in datas.user_list %}
                     <tr style="height: 45px">
                     <td class="center">{{ i[1] }}</td>
                     <td class="center">{{ i[2] }}</td>
@@ -62,7 +62,31 @@
                      </tr>
               {% endfor %}
 					</table>
-					<div class="paging">此处是分页</div>
+{#					<div class="paging">此处是分页</div>#}
+                    <div style="float: right;margin-top: 10px">
+                        <table border="1" cellspacing="0" cellpadding="0">
+                        <tr style="height: 40px;color: blue">
+                        {% if datas.show_shouye_status==1%}
+                          <td  style="width: 40px;"><a href='/system/user_manger/user_show?p=1'>首页</a></td>
+                          <td class=''><a href='/system/user_manger/user_show?p={{datas.p-1}}'>上一页</a></td>
+                       {%endif%}
+
+                        {% for dic in datas.dic_list %}
+                          {% if dic==datas.p%}
+                              <td style="width: 40px;"><a href="/system/user_manger/user_show?p={{dic}}" rel="external nofollow" rel="external nofollow" >{{dic}}</a></td>
+                          {%else%}
+                            <td style="width: 40px;"><a href="/system/user_manger/user_show?p={{dic}}" rel="external nofollow" rel="external nofollow" >{{dic}}</a></td>
+                          {%endif%}
+                        {%endfor%}
+
+                        {% if datas.p < datas.total%}
+                          <td class=''><a href='/system/user_manger/user_show?p={{datas.p+1}}'></a></td>
+                          <td style="width: 40px;"><a href='/system/user_manger/user_show?p={{datas.total}}'>尾页</a></td>
+                        {%endif%}
+                            <td>共{{datas.total}}页</td>
+                        </tr>
+                        </table>
+                    </div>
 				</div>
 				<!-- banner 表格 显示 end-->
 			</div>

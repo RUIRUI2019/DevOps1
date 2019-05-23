@@ -30,13 +30,14 @@
 						<div class="cfD">
 							<input class="addUser"type="text" id="searchtext" placeholder="输入设备id" />
 							<input type="button" class="button" id="search"value="搜索"/>
+                            <button class="button">打印数据</button>
 							<!-- <a class="addA addA1" href="topicadd.html">添加话题+</a>-->
 						</div>
 					</form>
 				</div>
 				<!-- topic表格 显示 -->
 				<div class="conShow">
-					<table border="1" cellspacing="0" cellpadding="0" id="table">
+					<table border="1" cellspacing="0" cellpadding="0" id="datatable">
                             <tr>
                                 <td width="350px" class="tdColor">设备序号</td>
                                 <td width="350px" class="tdColor">故障点</td>
@@ -128,8 +129,21 @@
 	</div>
 	<!-- 删除弹出框  end-->
 </body>
-
+<script type="text/javascript" src="/static/jquery.js"></script>
+<script type="text/javascript" src="/static/js/jquery.table2excel.js"></script>
 <script type="text/javascript">
+
+    $('button').click(function(){
+			console.log(1)
+			$("#datatable").table2excel({
+		        exclude: ".noExl",
+		        name: "Excel Document Name",
+		        filename: "threshold.xls",
+		        exclude_img: true,
+		        exclude_links: true,
+		        exclude_inputs: true
+		    });
+		});
     // 通过点击按钮开始筛选
 		$(function(){
 			$('#search').click(function(){

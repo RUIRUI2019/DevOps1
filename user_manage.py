@@ -69,14 +69,49 @@ def login():
 
 @app.route('/system/user_manger/user_show')
 def user_show():
+    p = request.args.get("p",'')
+    show_shouye_status = 0  # 显示首页状态
+
+    if p == '':
+        p = 1
+    else:
+        p = int(p)
+        if p > 1:
+            show_shouye_status = 1
+
+    limit_start = (int(p) - 1) * 13  # 起始
+
     db = pymysql.connect("localhost", "root", "123456", "opcdata")
     cursor = db.cursor()
-    sql = "SELECT * FROM user"
+    sql = "SELECT * FROM user limit {0},13".format(limit_start)
     cursor.execute(sql)
-    u = cursor.fetchall()
+    user_list = cursor.fetchall()
+    # print("user_list-------------------------------", user_list)
+    sql = "select count(username) as total from user"
+    cursor.execute(sql)
+    count = cursor.fetchone()  # 总记录
     db.close()
-    print(u)
-    return render_template('user_show.html',u=u)
+    # print("count-------------------------------", count)
+    total = int(math.ceil(count[0] / 13.0))  # 总页数
+    dic = get_page(total, p)
+    datas = {
+        'user_list': user_list,
+        'p': int(p),
+        'total': total,
+        'show_shouye_status': show_shouye_status,
+        'dic_list': dic
+
+    }
+    return render_template("user_show.html", datas=datas)
+
+    # db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    # cursor = db.cursor()
+    # sql = "SELECT * FROM user"
+    # cursor.execute(sql)
+    # u = cursor.fetchall()
+    # db.close()
+    # print(u)
+    # return render_template('user_show.html',u=u)
 
 @app.route('/remove-user/<string:username>/<string:guanli>',methods=['GET','POST'])
 def remove_user(username,guanli):
@@ -174,6 +209,7 @@ def system_log():
     sql = "select count(id) as total from log_info"
     cursor.execute(sql)
     count = cursor.fetchone()  # 总记录
+    db.close()
     print("count-------------------------------", count)
     total = int(math.ceil(count[0] / 13.0))  # 总页数
 

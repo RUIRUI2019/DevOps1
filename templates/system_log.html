@@ -6,7 +6,8 @@
 <link rel="stylesheet" type="text/css" href="/static/css/css.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/mricode.pagination.css" />
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/mricode.pagination.js"></script>
+
+
 <!-- <script type="text/javascript" src="js/page.js" ></script> -->
  <style>
     table tr:nth-child(even){
@@ -34,12 +35,13 @@
 							<input class="vinput" type="text" />
                             <input class="addUser"type="text" id="searchtext" placeholder="输入用户名" />
 							<input type="button" class="button" id="search"value="搜索"/>
+                            <button class="button">打印数据</button>
 						</div>
 					</form>
 				</div>
 				<!-- wish 表格 显示 -->
 				<div class="wishShow">
-					<table border="1" cellspacing="0" cellpadding="0" id="table">
+					<table border="1" cellspacing="0" cellpadding="0" id="datatable">
 						<thead style="font-size: 20px">
 							<th width="100px" class="tdColor" style="background: #2a9cdd;color: white;font-size: 17px">序号</th>
 							<th width="250px" class="tdColor"  style="background: #2a9cdd;color: white;font-size: 17px">用户名</th>
@@ -107,18 +109,21 @@
 	<!-- 删除弹出框  end-->
 </body>
 <script type="text/javascript" src="/static/jquery.js"></script>
+<script type="text/javascript" src="/static/js/jquery.table2excel.js"></script>
+
 <script type="text/javascript">
-{#		var text = "";#}
-{#		//实时筛选，不用点击按钮#}
-{#		function search(){#}
-{#			text = $('#searchtext').val();//获取文本框输入#}
-{#			if($.trim(text) != ""){#}
-{#					$("#table tr:gt(0)").hide().filter(":contains('"+text+"')").show();#}
-{#			}else{#}
-{#				$('#table tr').show();//当删除文本框的内容时，又重新显示表格所有内容#}
-{#			}#}
-{#		};#}
-{#		setInterval(search,100)#}
+
+$('button').click(function(){
+			console.log(1)
+			$("#datatable").table2excel({
+		        exclude: ".noExl",
+		        name: "Excel Document Name",
+		        filename: "system_log.xls",
+		        exclude_img: true,
+		        exclude_links: true,
+		        exclude_inputs: true
+		    });
+		});
 
 // 通过点击按钮开始筛选
 		$(function(){

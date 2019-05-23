@@ -4,7 +4,8 @@ import json
 import pymysql
 import time
 import traceback
-from user_manage import log_record
+from user_manage import log_record,get_page
+import math
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '123456'
@@ -27,13 +28,40 @@ def baidu():
 
 @app.route('/equip_map/position')
 def position():
+    p = request.args.get("p", '')
+    show_shouye_status = 0  # 显示首页状态
+
+    if p == '':
+        p = 1
+    else:
+        p = int(p)
+        if p > 1:
+            show_shouye_status = 1
+
+    limit_start = (int(p) - 1) * 13  # 起始
+
     db = pymysql.connect("localhost", "root", "123456", "opcdata")
     cursor = db.cursor()
-    sql = "SELECT * FROM equip_info"
+    sql = "SELECT * FROM equip_info limit {0},13".format(limit_start)
     cursor.execute(sql)
-    u = cursor.fetchall()
+    user_list = cursor.fetchall()
+    # print("user_list-------------------------------", user_list)
+    sql = "select count(equipment_id) as total from equip_info"
+    cursor.execute(sql)
+    count = cursor.fetchone()  # 总记录
     db.close()
-    return render_template('equip_position.html',u=u)
+    # print("count-------------------------------", count)
+    total = int(math.ceil(count[0] / 13.0))  # 总页数
+    dic = get_page(total, p)
+    datas = {
+        'user_list': user_list,
+        'p': int(p),
+        'total': total,
+        'show_shouye_status': show_shouye_status,
+        'dic_list': dic
+
+    }
+    return render_template("equip_position.html", datas=datas)
 
 @app.route('/equip_tianjia')
 def equip_tianjia():

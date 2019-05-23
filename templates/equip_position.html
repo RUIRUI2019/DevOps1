@@ -27,16 +27,6 @@
 			<div class="connoisseur">
 				<div class="conform">
 					<form>
-                        <!--
-						<div class="cfD">
-							工作年限：<select><option>1年以内</option></select> 审核状态：<label><input
-								type="radio" checked="checked" name="styleshoice1" />&nbsp;未审核</label> <label><input
-								type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input
-								type="radio" name="styleshoice1" />&nbsp;不通过</label> 推荐状态：<label><input
-								type="radio" checked="checked" name="styleshoice2" />&nbsp;是</label><label><input
-								type="radio" name="styleshoice2" />&nbsp;否</label>
-						</div>
-						-->
 						<div class="cfD">
 							<input class="addUser"type="text" id="searchtext" placeholder="输入设备id" />
 							<input type="button" class="button" id="search"value="搜索"/>
@@ -56,65 +46,49 @@
 							<td width="445px" class="tdColor">联系电话</td>
                             <td width="445px" class="tdColor">保修年限</td>
 							<td width="445px" class="tdColor">其他</td>
-{#							<td width="150px" class="tdColor">本周预约次数</td>#}
-{#							<td width="140px" class="tdColor">可约时段</td>#}
-{#							<td width="140px" class="tdColor">审核状态</td>#}
-{#							<td width="150px" class="tdColor">是否推荐</td>#}
 							<td width="440px" class="tdColor">操作</td>
 						</tr>
-                        {% for i in u %}
+                        {% for i in datas.user_list %}
                         <tr style="height: 45px">
-                        <td class="center">{{ i[0] }}</td>
-                        <td class="center">{{ i[1] }}</td>
-                        <td class="center">{{ i[2] }}</td>
-                        <td class="center">{{ i[3] }}</td>
-                        <td class="center">{{ i[4] }}</td>
-                        <td class="center">{{ i[5] }}</td>
-                        <td class="center">{{ i[5] }}</td>
-                        <td class="center">{{ i[6] }}</td>
-                       <td><a href="connoisseuradd.html"><img class="operation"
-                                        src="/static/img/update.png"></a> <img class="operation delban"
-                                    src="/static/img/delete.png"></td>
+                            <td class="center">{{ i[0] }}</td>
+                            <td class="center">{{ i[1] }}</td>
+                            <td class="center">{{ i[2] }}</td>
+                            <td class="center">{{ i[3] }}</td>
+                            <td class="center">{{ i[4] }}</td>
+                            <td class="center">{{ i[5] }}</td>
+                            <td class="center">{{ i[5] }}</td>
+                            <td class="center">{{ i[6] }}</td>
+                           <td><a href="connoisseuradd.html"><img class="operation"
+                                            src="/static/img/update.png"></a> <img class="operation delban"
+                                        src="/static/img/delete.png"></td>
                         </tr>
                         {% endfor %}
-{#						<tr>#}
-{#							<td>1</td>#}
-{#							<td><div class="onsImg">#}
-{#									<img src="/static/img/banimg.png">#}
-{#								</div></td>#}
-{#							<td>山下就只</td>#}
-{#							<td>13312345678</td>#}
-{#							<td>南京市</td>#}
-{#							<td>南京设疑网络科技公司哈哈哈</td>#}
-{#							<td>总监</td>#}
-{#							<td>3次</td>#}
-{#							<td>周一周二周三</td>#}
-{#							<td>未审核</td>#}
-{#							<td>否</td>#}
-{#							<td><a href="connoisseuradd.html"><img class="operation"#}
-{#									src="/static/img/update.png"></a> <img class="operation delban"#}
-{#								src="/static/img/delete.png"></td>#}
-{#						</tr>#}
-{#						<tr>#}
-{#							<td>1</td>#}
-{#							<td><div class="onsImg">#}
-{#									<img src="/static/img/banimg.png">#}
-{#								</div></td>#}
-{#							<td>山下就只</td>#}
-{#							<td>13312345678</td>#}
-{#							<td>南京市</td>#}
-{#							<td>南京设疑网络科技公司哈哈哈</td>#}
-{#							<td>总监</td>#}
-{#							<td>3次</td>#}
-{#							<td>周一周二周三</td>#}
-{#							<td>未审核</td>#}
-{#							<td>否</td>#}
-{#							<td><a href="connoisseuradd.html"><img class="operation"#}
-{#									src="/static/img/update.png"></a> <img class="operation delban"#}
-{#								src="/static/img/delete.png"></td>#}
-{#						</tr>#}
 					</table>
-					<div class="paging">此处是分页</div>
+                    <div style="float: right;margin-top: 10px">
+                        <table border="1" cellspacing="0" cellpadding="0">
+                        <tr style="height: 40px;color: blue">
+                        {% if datas.show_shouye_status==1%}
+                          <td  style="width: 40px;"><a href='/equip_map/position?p=1'>首页</a></td>
+                          <td class=''><a href='/equip_map/position?p={{datas.p-1}}'>上一页</a></td>
+                       {%endif%}
+
+                        {% for dic in datas.dic_list %}
+                          {% if dic==datas.p%}
+                              <td style="width: 40px;"><a href="/equip_map/position?p={{dic}}" rel="external nofollow" rel="external nofollow" >{{dic}}</a></td>
+                          {%else%}
+                            <td style="width: 40px;"><a href="/equip_map/position?p={{dic}}" rel="external nofollow" rel="external nofollow" >{{dic}}</a></td>
+                          {%endif%}
+                        {%endfor%}
+
+                        {% if datas.p < datas.total%}
+                          <td class=''><a href='/equip_map/position?p={{datas.p+1}}'></a></td>
+                          <td style="width: 40px;"><a href='/equip_map/position?p={{datas.total}}'>尾页</a></td>
+                        {%endif%}
+                            <td>共{{datas.total}}页</td>
+                        </tr>
+                        </table>
+                    </div>
+{#					<div class="paging">此处是分页</div>#}
 				</div>
 				<!-- banner 表格 显示 end-->
 			</div>
