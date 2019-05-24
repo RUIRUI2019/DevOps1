@@ -127,6 +127,7 @@ def machine_data():
 
 @app.route('/equip_problem/threshold0')
 def threshold0():
+    print('ceshi')
     return render_template('threshold.html')
 
 @app.route('/threshold1',methods=['GET','POST'])
