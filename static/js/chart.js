@@ -19,7 +19,7 @@
     var myChart2 = echarts.init(document.getElementById('main3'));
     var myChart3 = echarts.init(document.getElementById('main2'));
     var myChart4 = echarts.init(document.getElementById('main4'));
-    var myChart5 = echarts.init(document.getElementById('main5'));
+    //var myChart5 = echarts.init(document.getElementById('main5'));
 function bind(result) {
     var myChart1 = echarts.init(document.getElementById('main1'));
     myChart1.showLoading()
@@ -96,14 +96,14 @@ function bind(result) {
 
         var   option2 = {
                 title : {
-                    text: '未来一周气温变化',
-                    subtext: '纯属虚构'
+                    text: '电机温度监测',
+                    subtext: '模拟数据'
                 },
             tooltip : {
                 trigger: 'axis'
             },
             legend: {
-                data:['最高气温','最低气温']
+                data:['1号电机','2号电机']
             },
             toolbox: {
                 show : true,
@@ -120,7 +120,7 @@ function bind(result) {
                 {
                     type : 'category',
                     boundaryGap : false,
-                    data : ['周一','周二','周三','周四','周五','周六','周日']
+                    data : ['0:00','3:00','6:00','9:00','12:00','15:00','18:00','21:00']
                 }
             ],
             yAxis : [
@@ -133,9 +133,9 @@ function bind(result) {
             ],
             series : [
                 {
-                    name:'最高气温',
+                    name:'1号电机',
                     type:'line',
-                    data:[11, 11, 15, 13, 12, 13, 10],
+                    data:[11, 11, 15, 13, 12, 13, 10,14],
                     markPoint : {
                         data : [
                             {type : 'max', name: '最大值'},
@@ -149,9 +149,9 @@ function bind(result) {
                     }
                 },
                 {
-                    name:'最低气温',
+                    name:'2号电机',
                     type:'line',
-                    data:[1, -2, 2, 5, 3, 2, 0],
+                    data:[3, 5, 1, 4, 3, 2, 0,6],
                     markPoint : {
                         data : [
                             {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
