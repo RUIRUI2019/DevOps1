@@ -11,6 +11,47 @@ import math
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '123456'
 
+#日志记录函数
+def log_record(do_thing):
+    db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    cursor = db.cursor()
+    sql = "insert into log_info values (0,{username},{do_what},{do_time},{do_ip})". \
+        format(username=repr(session.get('username')),
+               do_what=repr(do_thing),
+               do_time=repr(time.strftime('%Y.%m.%d %H:%M:%S', time.localtime(time.time()))),
+               do_ip=repr(socket.gethostbyname(socket.getfqdn(socket.gethostname()))))
+    # print("sql...................",sql)
+    try:
+        cursor.execute(sql)
+        db.commit()
+    except:
+        traceback.print_exc()
+        db.rollback()
+
+def get_page(total,p):
+  show_page = 5  # 显示的页码数
+  pageoffset = 2 # 偏移量
+  start = 1  #分页条开始
+  end = total #分页条结束
+
+  if total > show_page:
+    if p > pageoffset:
+      start = p - pageoffset
+      if total > p + pageoffset:
+        end = p + pageoffset
+      else:
+        end = total
+    else:
+      start = 1
+      if total > show_page:
+        end = show_page
+      else:
+        end = total
+    if p + pageoffset > total:
+      start = start - (p + pageoffset - end)
+  #用于模版中循环
+  dic = range(start, end + 1)
+  return dic
 
 @app.route('/code')
 def get_code():
@@ -224,45 +265,5 @@ def system_log():
     }
     return render_template("system_log.html", datas=datas)
 
-#日志记录函数
-def log_record(do_thing):
-    db = pymysql.connect("localhost", "root", "123456", "opcdata")
-    cursor = db.cursor()
-    sql = "insert into log_info values (0,{username},{do_what},{do_time},{do_ip})". \
-        format(username=repr(session.get('username')),
-               do_what=repr(do_thing),
-               do_time=repr(time.strftime('%Y.%m.%d %H:%M:%S', time.localtime(time.time()))),
-               do_ip=repr(socket.gethostbyname(socket.getfqdn(socket.gethostname()))))
-    # print("sql...................",sql)
-    try:
-        cursor.execute(sql)
-        db.commit()
-    except:
-        traceback.print_exc()
-        db.rollback()
 
-def get_page(total,p):
-  show_page = 5  # 显示的页码数
-  pageoffset = 2 # 偏移量
-  start = 1  #分页条开始
-  end = total #分页条结束
-
-  if total > show_page:
-    if p > pageoffset:
-      start = p - pageoffset
-      if total > p + pageoffset:
-        end = p + pageoffset
-      else:
-        end = total
-    else:
-      start = 1
-      if total > show_page:
-        end = show_page
-      else:
-        end = total
-    if p + pageoffset > total:
-      start = start - (p + pageoffset - end)
-  #用于模版中循环
-  dic = range(start, end + 1)
-  return dic
 

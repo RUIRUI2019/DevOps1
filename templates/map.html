@@ -21,16 +21,37 @@
 			<select id="stylelist" onchange="changeMapStyle(this.value)"></select>
 		</div>
   <div style="width:1600px;height:800px;border:#ccc solid 1px;" id="dituContent"></div>
+<div class="logFoot" style="float: right;margin-bottom: 2%;margin-right: 2%">
+		<p class="p1">Copyright © ：西安交通大学自动控制研究所</p>
+</div>
 </body>
+<script src="/static/jquery.js"></script>
 <script type="text/javascript">
+ $.ajax({
+         url: '/addrTojson',
+         type: 'post',
+         dataType: 'json',
+          async:true,
+         success : function(result) {
+             if (result)
+             { //把result(即Json数据)以参数形式放入Echarts代码中
+                bind0(result);
+             }
+             },
+         error : function(errorMsg) { alert("加载数据失败"); }
+
+     });
     //创建和初始化地图函数：
-    function initMap(){
+ bind0(result);
+ function bind0(result) {
+    function initMap(result){
+        console.log(result)
         createMap();//创建地图
         setMapEvent();//设置地图事件
         addMapControl();//向地图添加控件
-        addMarker();//向地图中添加marker
+        addMarker(result);//向地图中添加marker
 
-    }
+    };
 
     //创建地图函数：
     function createMap(){
@@ -41,7 +62,7 @@
         //百度地图API功能
     //设置地图样式,隐藏建筑物等
 
-    }
+    };
 
     //地图事件设置函数：
     function setMapEvent(){
@@ -112,7 +133,7 @@
 	 ]
 	map.setMapStyle({styleJson:styleJson});
 
-    }
+    };
 
     //地图控件添加函数：
     function addMapControl(){
@@ -126,29 +147,19 @@
 	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
 	map.addControl(ctrl_sca);
 
-    }
+    };
 
-    //标注点数组
-    var markerArr = [{title:"绕线机设备1",content:"绕线机设备1<br/>型号：abc-456<br/>出厂日期：2019年10月<br/>联系人：张先生<br/>电话：1519195859",point:"88.40962|38.952826",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
-		 ,{title:"绕线机设备2",content:"绕线机设备2<br/>型号：abc-456<br/>出厂日期：2019年10月<br/>联系人：张先生<br/>电话：1519195859",point:"92.162668|30.77797",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
-		 ,{title:"绕线机设备3",content:"绕线机设备3<br/>型号：abc-456<br/>出厂日期：2019年10月<br/>联系人：张先生<br/>电话：1519195859",point:"82.375306|34.451622",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
-		 ,{title:"绕线机设备4",content:"绕线机设备4<br/>型号：abc-456<br/>出厂日期：2019年10月<br/>联系人：张先生<br/>电话：1519195859",point:"99.742354|34.755876",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
-		 ,{title:"绕线机设备5",content:"绕线机设备5<br/>型号：abc-456<br/>出厂日期：2019年10月<br/>联系人：张先生<br/>电话：1519195859",point:"109.676895|39.752704",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
-		 ,{title:"绕线机设备6",content:"绕线机设备6<br/>型号：abc-456<br/>出厂日期：2019年10月<br/>联系人：张先生<br/>电话：1519195859",point:"107.469219|26.825023",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
-		 ,{title:"绕线机设备7",content:"绕线机设备7<br/>型号：abc-456<br/>出厂日期：2019年10月<br/>联系人：张先生<br/>电话：1519195859",point:"115.416851|32.478013",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
-		  ,{title:"绕线机设备8",content:"绕线机设备7<br/>型号：abc-456<br/>出厂日期：2019年10月<br/>联系人：张先生<br/>电话：1519195859",point:"124.100375|44.777339",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
-		 ];
-    //创建marker
-    function addMarker(){
-        for(var i=0;i<markerArr.length;i++){
-            var json = markerArr[i];
-            var p0 = json.point.split("|")[0];
-            var p1 = json.point.split("|")[1];
+ function addMarker(result){
+     var icon0 = {w:23,h:25,l:46,t:21,x:9,lb:12}
+     for(var i=0;i<result.length;i++){
+            var json = result[i];
+            var p0 = json.point.split("|")[1];
+            var p1 = json.point.split("|")[0];
             var point = new BMap.Point(p0,p1);
-			var iconImg = createIcon(json.icon);
-            var marker = new BMap.Marker(point,{icon:iconImg});
+			var iconImg = createIcon(icon0);
+            var marker = new BMap.Marker(point,{icon0:iconImg});
 			var iw = createInfoWindow(i);
-			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+			var label = new BMap.Label(json.title,{"offset":new BMap.Size(icon0.lb-icon0.x+10,-20)});
 			marker.setLabel(label);
             map.addOverlay(marker);
             label.setStyle({
@@ -181,18 +192,18 @@
         }
 
     }
-    //创建InfoWindow
     function createInfoWindow(i){
-        var json = markerArr[i];
+        var json = result[i];
         var iw = new BMap.InfoWindow("<a  style='font-size:20px;' class='iw_poi_title' href='/machine' title='" + json.title + "'>" + json.title + "</a><div class='iw_poi_content'>"+json.content+"</div>");
         return iw;
-    }
+    };
     //创建一个Icon
     function createIcon(json){
         var icon = new BMap.Icon("http://map.baidu.com/image/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
         return icon;
-    }
+    };
 
-    initMap();//创建和初始化地图
+    initMap(result);//创建和初始化地图
+ }
 </script>
 </html>

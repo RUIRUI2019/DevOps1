@@ -1,4 +1,5 @@
 import math
+from flask import render_template
 def get_page(total,p):
   show_page = 5  # 显示的页码数
   pageoffset = 2 # 偏移量

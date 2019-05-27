@@ -6,11 +6,26 @@ import time
 import traceback
 from user_manage import log_record,get_page
 import math
+from urllib.request import urlopen, quote
+import requests
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '123456'
 
 from user_manage import app
+
+def getlnglat(address):
+    url = 'http://api.map.baidu.com/geocoder/v2/'
+    output = 'json'
+    ak = '1iAUzSFoRNOC3Cc9wWiGGlmNuI5brif1' # 浏览器端密钥
+    address = quote(address) # 由于本文地址变量为中文，为防止乱码，先用quote进行编码
+    uri = url + '?' + 'address=' + address  + '&output=' + output + '&ak=' + ak
+    req = urlopen(uri)
+    res = req.read().decode()
+    temp = json.loads(res)
+    lat = temp['result']['location']['lat']
+    lng = temp['result']['location']['lng']
+    return lat, lng
 
 @app.route('/index')
 def hello_world():
@@ -167,6 +182,27 @@ def bar_data():
         data_list.append(tem)
     print(data_list)
     return json.dumps(data_list)
+
+@app.route('/addrTojson',methods=['GET','POST'])
+def addrTojson():
+    db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    cursor = db.cursor()
+    sql = "SELECT * FROM equip_info"
+    cursor.execute(sql)
+    u = cursor.fetchall()
+    db.close()
+    equip_list = []
+    for i in u:
+        tem = {}
+        tem['title'] = i[0]
+        tem['content'] = "型号：{0}<br/>出厂日期：{1}<br/>联系人：{2}<br/>电话：{3}".format(i[1],i[2],i[3],i[5])
+        print(tem['content'])
+        jing,wei = getlnglat(i[4])
+        tem['point'] = str(jing)+'|'+str(wei)
+        tem['isopen'] = 0
+        equip_list.append(tem)
+    print(equip_list)
+    return json.dumps(equip_list)
 
 if __name__ == '__main__':
     app.run(port=8888,debug=True)
