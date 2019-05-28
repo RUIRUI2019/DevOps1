@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template,request,flash,redirect,session
+from flask import render_template,request,flash,redirect,session,url_for
 import json
 import pymysql
 import time
@@ -30,9 +30,11 @@ def getlnglat(address):
 @app.route('/index')
 def hello_world():
     return render_template('index.html')
+
 @app.route('/main')
 def main():
     return render_template('main.html')
+
 @app.route('/equip_map')
 def equip_map():
     return render_template('equip_map.html')

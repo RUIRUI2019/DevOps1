@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
-<meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
 <title>百度地图API自定义地图</title>
 <!--引用百度地图API-->
 <style type="text/css">
@@ -21,7 +21,7 @@
 			<select id="stylelist" onchange="changeMapStyle(this.value)"></select>
 		</div>
   <div style="width:1600px;height:800px;border:#ccc solid 1px;" id="dituContent"></div>
-<div class="logFoot" style="float: right;margin-bottom: 2%;margin-right: 2%">
+<div class="logFoot" style="float: right;margin-top: 2%;margin-right: 2%">
 		<p class="p1">Copyright © ：西安交通大学自动控制研究所</p>
 </div>
 </body>
@@ -138,15 +138,41 @@
     //地图控件添加函数：
     function addMapControl(){
         //向地图中添加缩放控件
-	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
-	map.addControl(ctrl_nav);
-        //向地图中添加缩略图控件
-	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
-	map.addControl(ctrl_ove);
-        //向地图中添加比例尺控件
-	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
-	map.addControl(ctrl_sca);
+        var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_RIGHT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+        map.addControl(ctrl_nav);
+            //向地图中添加缩略图控件
+        var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
+        map.addControl(ctrl_ove);
+            //向地图中添加比例尺控件
+        var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_TOP_LEFT});
+        map.addControl(ctrl_sca);
+        var mapType1 = new BMap.MapTypeControl(
+            {
+                mapTypes: [BMAP_HYBRID_MAP,BMAP_NORMAL_MAP],
+               // mapTypes: BMAP_HYBRID_MAP,
+                anchor: BMAP_ANCHOR_TOP_LEFT
+            }
+        );
+        map.addControl(mapType1)
 
+      // 添加定位控件
+      var geolocationControl = new BMap.GeolocationControl();
+      geolocationControl.addEventListener("locationSuccess", function(e){
+        // 定位成功事件
+        var address = '';
+        address += e.addressComponent.province;
+        address += e.addressComponent.city;
+        address += e.addressComponent.district;
+        address += e.addressComponent.street;
+        address += e.addressComponent.streetNumber;
+        alert("当前定位地址为：" + address);
+
+  });
+  geolocationControl.addEventListener("locationError",function(e){
+    // 定位失败事件
+    alert(e.message);
+  });
+  map.addControl(geolocationControl);
     };
 
  function addMarker(result){

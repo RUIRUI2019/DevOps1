@@ -7,6 +7,7 @@ import validate_code
 import time
 import socket
 import math
+import json
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '123456'
@@ -67,6 +68,7 @@ def get_code():
     print(session['img'])
     print(response)
     return response
+
 
 @app.route('/',methods=['GET','POST'])
 def login():
@@ -177,6 +179,14 @@ def pwd():
     username = session.get('username')
     print('用户名' + username)
     return render_template('changepwd.html', u=username)
+
+@app.route('/head',methods=['GET','POST'])
+def head():
+    jsondata = []
+    tem = {}
+    tem['username'] = session.get('username')
+    jsondata.append(tem)
+    return json.dumps(jsondata)
 
 @app.route('/system/changepwd',methods=['GET','POST'])
 def changepwd():
