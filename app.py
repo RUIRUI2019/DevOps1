@@ -84,12 +84,16 @@ def position():
 def equip_tianjia():
     db = pymysql.connect("localhost", "root", "123456", "opcdata")
     cursor = db.cursor()
+    addr = request.args.get('addr')
+    jing, wei = getlnglat(addr)
+    jing_wei = str(jing) + '|' + str(wei)
     sql = "insert into equip_info(equipment_id,model,sale_date,linkman,addr,contacts,baoxiu,other) values" + \
           '(' + repr(request.args.get('equipment_id')) + ',' + \
           repr(request.args.get('model')) + ',' + \
           repr(request.args.get('sale_date')) + ',' + \
           repr(request.args.get('linkman')) + ',' + \
           repr(request.args.get('addr')) + ',' + \
+          repr(jing_wei) + ',' + \
           repr(request.args.get('contacts')) + ',' + \
           repr(request.args.get('baoxiu')) + ',' + \
           repr(request.args.get('other')) + ')'
@@ -199,12 +203,77 @@ def addrTojson():
         tem['title'] = i[0]
         tem['content'] = "型号：{0}<br/>出厂日期：{1}<br/>联系人：{2}<br/>电话：{3}".format(i[1],i[2],i[3],i[5])
         print(tem['content'])
-        jing,wei = getlnglat(i[4])
-        tem['point'] = str(jing)+'|'+str(wei)
+        tem['point'] = i[5]
         tem['isopen'] = 0
         equip_list.append(tem)
     print(equip_list)
     return json.dumps(equip_list)
+
+#删除设备信息
+@app.route('/remove_equip/<string:equipment_id>',methods=['GET','POST'])
+def remove_equip(equipment_id):
+    print('删除设备')
+    if equipment_id:
+        db = pymysql.connect("localhost", "root", "123456", "opcdata")
+        cursor = db.cursor()
+        sql = "Delete FROM equip_info where equipment_id="+repr(equipment_id)
+        print(sql)
+        cursor.execute(sql)
+        db.commit()
+        do_thing = "用户：{yonghu}，删除设备操作执行成功".format(yonghu=session.get('username'))
+        log_record(do_thing)
+        db.close()
+    return redirect('/equip_map/position')
+
+#修改设备信息
+@app.route('/equip_modify/<string:equipment_id>', methods=['GET', 'POST'])
+def equip_modify(equipment_id):
+    print('修改设备')
+    if equipment_id:
+        db = pymysql.connect("localhost", "root", "123456", "opcdata")
+        cursor = db.cursor()
+        sql = "select * FROM equip_info where equipment_id=" + repr(equipment_id)
+        cursor.execute(sql)
+        old_info = cursor.fetchall()
+        print(old_info[0])
+        print(type(old_info[0]))
+        db.commit()
+        db.close()
+    return render_template('equip_modify.html', old_info=old_info[0])
+
+#接受前端数据在数据库修改设备信息
+@app.route('/equip_mod')
+def equip_mod():
+    db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    cursor = db.cursor()
+    addr = request.args.get('addr')
+    jing, wei = getlnglat(addr)
+    jing_wei = str(jing) + '|' + str(wei)
+
+    sql = "update equip_info set sale_date="+repr(request.args.get('sale_date')) + ',' + \
+          "linkman="+repr(request.args.get('linkman')) + ',' +\
+          "addr="+repr(request.args.get('addr')) + ',' + \
+          "jing_wei=" + repr(jing_wei) + ',' + \
+          "contacts=" + repr(request.args.get('contacts')) + ',' + \
+          "baoxiu=" + repr(request.args.get('baoxiu')) + ',' + \
+          "other=" + repr(request.args.get('other')) + \
+          " where equipment_id=" + repr(request.args.get('equipment_id'))
+    print(sql)
+    try:
+        # 执行sql语句
+        cursor.execute(sql)
+        db.commit()
+        do_thing = "用户：{yonghu}，进行了修改设备操作".format(yonghu=session.get('username'))
+        log_record(do_thing=do_thing)
+        return redirect('/equip_map/position')
+    except:
+        # 如果发生错误则回滚
+        traceback.print_exc()
+        db.rollback()
+        flash('对不起添加失败le')
+        return render_template('equip_modify.html')
+    # 关闭数据库连接
+    db.close()
 
 if __name__ == '__main__':
     app.run(port=8888,debug=True)

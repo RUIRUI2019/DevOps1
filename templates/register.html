@@ -2,11 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>登录-绕线机网络化检测与诊断系统</title>
+<title>注册-绕线机网络化检测与诊断系统</title>
 <link rel="stylesheet" type="text/css" href="/static/css/public.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/page.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/css.css" />
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/public.js"></script>
+    <style>
+        ::-webkit-input-placeholder { /* WebKit browsers */
+  color: #999;
+  font-size: 16px;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #999;
+  font-size: 16px;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #999;
+  font-size: 16px;
+}
+    </style>
 </head>
 <body>
 
@@ -19,27 +36,34 @@
 	<!-- 登录body -->
 	<div class="logDiv">
 		<img class="logBanner" src="/static/img/login.png" />
-		<div class="logGet">
+		<div class="logGet" style="height: 450px">
 			<!-- 头部提示信息 -->
 			<div class="logD logDtip">
-				<p class="p1">登录</p>
-				<a class="p2"  href="/regist">还没有账号，立即注册></a>
+				<p class="p1">注册</p>
+				<a class="p2"  href="/">已有账号，点击登录></a>
 			</div>
 			<!-- 输入框 -->
-            <form method="post" action="/" id="loginform">
+            <form method="post" action="/regist" id="loginform">
 			<div class="lgD">
-				<img class="img1" src="/static/img/logName.png" /><input type="text" name="username" placeholder="输入用户名" />
+				<img class="img1" src="/static/img/tou.png" /><input type="text" name="username" placeholder="Pick a username" />
 			</div>
 			<div class="lgD">
-				<img class="img1" src="/static/img/logPwd.png" /><input type="password" name="password" placeholder="输入用户密码" />
+				<img class="img1" src="/static/img/mail.png" /><input type="text" name="email" placeholder="you@example.com" />
 			</div>
-			<div class="lgD logD2">
-				<input class="getYZM" type="text" name="yanzhengma"/>
-				<div class="logYZM">
-{#					<img class="yzm" src="/static/img/logYZM.png" />#}
-                    <img id="verficode" src="/code" onclick="this.src='./code?'+Math.random()">
-				</div>
+            <div class="lgD">
+				<img class="img1" src="/static/img/phone.png" /><input type="tel" name="phone" placeholder="your phone" />
 			</div>
+            <div class="lgD">
+				<img class="img1" src="/static/img/mima.png" /><input type="password" name="password" placeholder="Create a password" />
+			</div>
+
+            <div class="bbD"style="margin-top:1px ">
+			    <p class="bbDP">
+                    <input type="submit" class="btn_ok btn_yes" style="margin-top: 0px" value="注册">
+					<a class="btn_ok btn_no" style="margin-top: 0px" href="/">取消</a>
+				</p>
+			</div>
+
        {% for message in get_flashed_messages() %}
         <div class="alert alert-warning"style="margin-left: 20%">
             <button type="button" class="open" data-dismiss="alert" ><a style="color: yellow">&times;</a></button>
@@ -47,10 +71,12 @@
         </div>
        {% endfor %}
 
-			<div class="logC">
+{#			<div class="logC">#}
 {#                <button><input type="submit" value="登 录" ></button>#}
-                <button onclick="submits()">登录</button>
-			</div>
+{#                <button onclick="submits()">注册</button>#}
+{#                <a class="btn_ok btn_no" href="/">取消</a>#}
+{#			</div>#}
+
             </form>
              <script type="text/javascript" src="/static/jquery.js"></script>
                     <script>

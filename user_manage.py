@@ -110,6 +110,34 @@ def login():
             return render_template('log.html')
     return render_template('log.html')
 
+@app.route('/regist',methods=['GET','POST'])
+def regist():
+    db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    cursor = db.cursor()
+    sql = "insert into user(username,password,email,phone,guanli,cre_time) values" + \
+          '(' + repr(request.form.get('username')) + ',' + \
+          repr(request.form.get('password')) + ',' + \
+          repr(request.form.get('email')) + ',' + \
+          repr(request.form.get('phone')) + ',' + \
+          repr('普通管理员') + ',' + \
+          repr(str(time.strftime('%Y.%m.%d %H:%M:%S ', time.localtime(time.time())))) + ')'
+    print(sql)
+    try:
+        # 执行sql语句
+        cursor.execute(sql)
+        do_thing = "用户：{yonghu}，在平台注册成功".format(yonghu=request.form.get('username'))
+        log_record(do_thing)
+        db.commit()
+        return render_template('log.html')
+    except:
+        # 如果发生错误则回滚
+        traceback.print_exc()
+        db.rollback()
+        flash('注册失败，该用户已存在')
+        return render_template('register.html')
+    # 关闭数据库连接
+    db.close()
+
 @app.route('/system/user_manger/user_show')
 def user_show():
     p = request.args.get("p",'')
@@ -156,7 +184,7 @@ def user_show():
     # print(u)
     # return render_template('user_show.html',u=u)
 
-@app.route('/remove-user/<string:username>/<string:guanli>',methods=['GET','POST'])
+@app.route('/remove_user/<string:username>/<string:guanli>',methods=['GET','POST'])
 def remove_user(username,guanli):
     if guanli=='超级管理员':
         do_thing = "用户：{yonghu}，删除用户操作被拒绝".format(yonghu=session.get('username'))
@@ -173,6 +201,8 @@ def remove_user(username,guanli):
         log_record(do_thing)
         db.close()
     return redirect('/system/user_manger/user_show')
+
+
 
 @app.route('/system/pwd')
 def pwd():

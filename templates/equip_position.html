@@ -55,12 +55,13 @@
                             <td class="center">{{ i[2] }}</td>
                             <td class="center">{{ i[3] }}</td>
                             <td class="center">{{ i[4] }}</td>
-                            <td class="center">{{ i[5] }}</td>
                             <td class="center">{{ i[6] }}</td>
                             <td class="center">{{ i[7] }}</td>
-                           <td><a href="connoisseuradd.html"><img class="operation"
-                                            src="/static/img/update.png"></a> <img class="operation delban"
-                                        src="/static/img/delete.png"></td>
+                            <td class="center">{{ i[8] }}</td>
+                           <td><a href="{{url_for('equip_modify',equipment_id=i[0])}}"><img class="operation"src="/static/img/update.png"></a>
+                               <a name="remove" onclick="return confirm('确定要删除吗?')" href="{% if not onclick%} {{url_for('remove_equip',equipment_id=i[0])}}{% endif %}">
+                               <img class=""src="/static/img/delete.png">
+                               </a></td>
                         </tr>
                         {% endfor %}
 					</table>
@@ -100,7 +101,12 @@
 
 	</div>
 
+    <div class="logFoot" style="float: right;padding-top: 2%;margin-right: 2%">
+		<p class="p1">Copyright © ：西安交通大学自动控制研究所</p>
+    </div>
+
 	<!-- 删除弹出框 -->
+    <!--
 	<div class="banDel">
 		<div class="delete">
 			<div class="close">
@@ -112,6 +118,7 @@
 			</p>
 		</div>
 	</div>
+	-->
 	<!-- 删除弹出框  end-->
 </body>
 
