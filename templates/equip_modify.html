@@ -31,6 +31,16 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设备型号：<input type="text" name="model"
 							class="input3" value="{{ old_info[1] }}"/>
 					</div>
+                    <div class="bbD">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通讯方式：&nbsp;
+							<select class="form-control" style="height: 45px" name="link_method">
+								<option value="">请选择连接方式</option>
+								<option value="标准以太网协议">标准以太网协议</option>
+								<option value="标准以太网协议">OPC协议</option>
+								<option value="ModBus协议">ModBus协议</option>
+								<option value="其他">其他</option>
+							</select>
+					</div>
 					<div class="bbD">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;售出日期：<input type="date" name="sale_date"
 							class="input3" value="{{ old_info[2] }}"/>

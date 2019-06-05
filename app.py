@@ -14,6 +14,7 @@ app.config['SECRET_KEY'] = '123456'
 
 from user_manage import app
 
+
 def getlnglat(address):
     url = 'http://api.map.baidu.com/geocoder/v2/'
     output = 'json'
@@ -87,9 +88,10 @@ def equip_tianjia():
     addr = request.args.get('addr')
     jing, wei = getlnglat(addr)
     jing_wei = str(jing) + '|' + str(wei)
-    sql = "insert into equip_info(equipment_id,model,sale_date,linkman,addr,contacts,baoxiu,other) values" + \
+    sql = "insert into equip_info(equipment_id,model,link_method,sale_date,linkman,addr,jing_wei,contacts,baoxiu,other) values" + \
           '(' + repr(request.args.get('equipment_id')) + ',' + \
           repr(request.args.get('model')) + ',' + \
+          repr(request.args.get('link_method')) + ',' + \
           repr(request.args.get('sale_date')) + ',' + \
           repr(request.args.get('linkman')) + ',' + \
           repr(request.args.get('addr')) + ',' + \
@@ -201,9 +203,9 @@ def addrTojson():
     for i in u:
         tem = {}
         tem['title'] = i[0]
-        tem['content'] = "型号：{0}<br/>出厂日期：{1}<br/>联系人：{2}<br/>电话：{3}".format(i[1],i[2],i[3],i[5])
+        tem['content'] = "型号：{0}<br/>出厂日期：{1}<br/>联系人：{2}<br/>电话：{3}".format(i[1],i[3],i[4],i[5])
         print(tem['content'])
-        tem['point'] = i[5]
+        tem['point'] = i[6]
         tem['isopen'] = 0
         equip_list.append(tem)
     print(equip_list)
@@ -251,6 +253,7 @@ def equip_mod():
     jing_wei = str(jing) + '|' + str(wei)
 
     sql = "update equip_info set sale_date="+repr(request.args.get('sale_date')) + ',' + \
+          "link_method=" + repr(request.args.get('link_method')) + ',' + \
           "linkman="+repr(request.args.get('linkman')) + ',' +\
           "addr="+repr(request.args.get('addr')) + ',' + \
           "jing_wei=" + repr(jing_wei) + ',' + \

@@ -133,7 +133,7 @@ def regist():
         # 如果发生错误则回滚
         traceback.print_exc()
         db.rollback()
-        flash('注册失败，该用户已存在')
+        # flash('注册失败，该用户已存在')
         return render_template('register.html')
     # 关闭数据库连接
     db.close()

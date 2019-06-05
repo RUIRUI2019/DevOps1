@@ -40,6 +40,7 @@
 						<tr>
 							<td width="445px" class="tdColor">设备序号</td>
 							<td width="445px" class="tdColor">设备型号</td>
+                            <td width="445px" class="tdColor">连接方式</td>
 							<td width="445px" class="tdColor">售出日期</td>
 							<td width="445px" class="tdColor">联系人</td>
 							<td width="445px" class="tdColor">地址</td>
@@ -55,9 +56,10 @@
                             <td class="center">{{ i[2] }}</td>
                             <td class="center">{{ i[3] }}</td>
                             <td class="center">{{ i[4] }}</td>
-                            <td class="center">{{ i[6] }}</td>
+                            <td class="center">{{ i[5] }}</td>
                             <td class="center">{{ i[7] }}</td>
                             <td class="center">{{ i[8] }}</td>
+                            <td class="center">{{ i[9] }}</td>
                            <td><a href="{{url_for('equip_modify',equipment_id=i[0])}}"><img class="operation"src="/static/img/update.png"></a>
                                <a name="remove" onclick="return confirm('确定要删除吗?')" href="{% if not onclick%} {{url_for('remove_equip',equipment_id=i[0])}}{% endif %}">
                                <img class=""src="/static/img/delete.png">

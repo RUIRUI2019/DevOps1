@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>设备添加-绕线机网络化检测与诊断系统</title>
 <link rel="stylesheet" type="text/css" href="/static/css/css.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/bo" />
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 </head>
 <body >
@@ -14,7 +15,7 @@
 					href="#">设备位置显示</a>&nbsp;-</span>&nbsp;设备添加
 			</div>
 		</div>
-		<div class="page "style="background-image: url('/static/img/lanse.png')">
+		<div class="page ">
 			<!-- 上传广告页面样式 -->
 			<div class="banneradd bor">
                 <form method="get" action="/equip_tianjia" id="tianjiaform">
@@ -22,29 +23,28 @@
 					<span>设备添加</span>
 				</div>
 				<div class="baBody">
-{#					<div class="bbD">#}
-{#						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;头像：#}
-{#						<div class="vipHead vipHead1">#}
-{#							<img src="/static/img/userPICS.png" />#}
-{#							<p class="vipP">更换头像</p>#}
-{#							<input class="file1" type="file" />#}
-{#						</div>#}
-{#					</div>#}
+
 					<div class="bbD">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设备序号：<input type="text" name="equipment_id"
-							class="input3" />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设备序号：<input type="text" name="equipment_id"class="input3" />
 					</div>
 					<div class="bbD">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设备型号：<input type="text" name="model"
-							class="input3" />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设备型号：<input type="text" name="model" class="input3" />
+					</div>
+                    <div class="bbD">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通讯方式：&nbsp;
+							<select class="form-control" style="height: 45px" name="link_method">
+								<option value="">请选择连接方式</option>
+								<option value="标准以太网协议">标准以太网协议</option>
+								<option value="标准以太网协议">OPC协议</option>
+								<option value="ModBus协议">ModBus协议</option>
+								<option value="其他">其他</option>
+							</select>
 					</div>
 					<div class="bbD">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;售出日期：<input type="date" name="sale_date"
-							class="input3" />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;售出日期：<input type="date" name="sale_date"class="input3" />
 					</div>
 					<div class="bbD">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 联 系 &nbsp;人：<input type="text" name="linkman"
-							class="input3" />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 联 系 &nbsp;人：<input type="text" name="linkman"class="input3" />
 					</div>
 {#					<div class="bbD">#}
 {#						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工作年限：<select class="input3"><option>1年以内</option></select>#}
@@ -56,13 +56,6 @@
 					<div class="bbD">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 保修年限：<input class="input3" type="text" name="baoxiu"/>
 					</div>
-{#					<div class="bbD">#}
-{#						本周可约时段：<input class="input3" type="text" />#}
-{#					</div>#}
-{#					<div class="bbD">#}
-{#						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;赞数：<input#}
-{#							class="input3" type="text" />#}
-{#					</div>#}
 					<div class="bbD">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他：
 						<div class="btext2">
