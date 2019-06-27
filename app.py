@@ -220,10 +220,15 @@ def remove_equip(equipment_id):
         cursor = db.cursor()
         sql = "Delete FROM equip_info where equipment_id="+repr(equipment_id)
         print(sql)
-        cursor.execute(sql)
-        db.commit()
-        do_thing = "用户：{yonghu}，删除设备操作执行成功".format(yonghu=session.get('username'))
-        log_record(do_thing)
+        try:
+            cursor.execute(sql)
+            db.commit()
+            do_thing = "用户：{yonghu}，删除设备操作执行成功".format(yonghu=session.get('username'))
+            log_record(do_thing)
+        except:
+            # 如果发生错误则回滚
+            traceback.print_exc()
+            db.rollback()
         db.close()
     return redirect('/equip_map/position')
 

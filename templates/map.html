@@ -143,9 +143,10 @@
             //向地图中添加比例尺控件
         var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_TOP_LEFT});
         map.addControl(ctrl_sca);
+           //设置地图样式
         var mapType1 = new BMap.MapTypeControl(
             {
-                mapTypes: [BMAP_HYBRID_MAP,BMAP_NORMAL_MAP],
+                mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP],
                // mapTypes: BMAP_HYBRID_MAP,
                 anchor: BMAP_ANCHOR_TOP_LEFT
             }

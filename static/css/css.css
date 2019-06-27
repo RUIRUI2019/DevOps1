@@ -24,6 +24,7 @@ li {
 #pageAll .page {
 	width: 98%;
 	margin: 0px auto;
+	background-color: rgb(242, 242, 242);
 }
 
 .pageTop {
