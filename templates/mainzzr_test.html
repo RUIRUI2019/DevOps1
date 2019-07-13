@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>绕线机网络化检测与诊断系统</title>
+<link rel="stylesheet" type="text/css" href="/static/css/css.css" />
+<script src="{{ url_for('static', filename='echarts.min.js') }}"></script>
+</head>
+
+{#<body>#}
+{#	<div id="pageAll">#}
+{#		<div class="page">#}
+{#			<!-- main页面样式#}
+{#			<div class="indexL">#}
+{#				<img class="indexBn" src="/static/img/dev2.jpg" /><br>#}
+{#			</div>#}
+{#			-->#}
+{#		</div>#}
+{#	</div>#}
+{#</body>#}
+<style>
+.div-a{ float:left;width:49%;border:1px solid #000}
+.div-b{ float:left;width:49%;border:1px solid #000}
+</style>
+
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="pageAll">
+    <div class="page">
+        <div class="pageTop">
+			<div class="page">
+				<img src="/static/img/coin02.png" /><span><a href="/main">首页</a>&nbsp;-&nbsp;<a
+					href="#"></a></span>&nbsp;绕线机设备状态监测综合页面
+			</div>
+		</div>
+
+        <div style="margin-top: 1%; float: right; margin-right: 50%">
+            <strong><p style="color:blue;font-size: 28px;font-family:楷体;">绕线机设备状态监测综合页面</p></strong>
+        </div>
+
+        <div class="conform">
+					<form>
+						<div class="cfD">
+
+							<input class="addUser"type="text" id="searchtext" placeholder="输入设备id" />
+							<input type="button" class="button" id="search"value="搜索"/>
+
+						</div>
+					</form>
+				</div>
+
+        <div class="div-a" id="main1" style="width:40%;height:600px; margin: 50px 10px 200px 500px;">
+
+
+        </div>
+
+{#        //<div class="div-a"id="main5" style="width: 40%;height:400px;margin:  3% auto;"></div>#}
+    </div>
+</div>
+<script src="/static/jquery.js"></script>
+<script src="/static/js/chartzzr_yanshi.js"></script>
+<script type="text/javascript">
+
+    // 使用刚指定的配置项和数据显示图表。
+    {#myChart1.setOption(option1);#}
+    //myChart2.setOption(option2);
+    {#myChart2.setOption(option2);#}
+    {#myChart3.setOption(option3);#}
+    myChart2.setOption(option1);
+    //myChart4.setOption(option3);
+    //myChart5.setOption(option5);
+</script>
+<div class="logFoot" style="float: right;margin-bottom: 2%;margin-right: 2%">
+		<p class="p1">Copyright © ：西安交通大学自动控制研究所</p>
+</div>
+</body>
+
+
+<script type="text/javascript">
+
+// 通过点击按钮开始筛选
+		$(function(){
+			$('#search').click(function(){
+				var text = $('#searchtext').val();//获取文本框输入
+				if($.trim(text) != ""){
+					$("#table tr:gt(0)").hide().filter(":contains('"+text+"')").show();
+				}
+			})
+		});
+
+
+
+
+
+
+// 广告弹出框
+$(".delban").click(function(){
+  $(".banDel").show();
+});
+$(".close").click(function(){
+  $(".banDel").hide();
+});
+$(".no").click(function(){
+  $(".banDel").hide();
+});
+// 广告弹出框 end
+</script>
+</html>

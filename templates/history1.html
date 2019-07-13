@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>设备实时数据采集-绕线机网络化检测与诊断系统</title>
+<link rel="stylesheet" type="text/css" href="/static/css/css.css" />
+ <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+ <style>
+table tr:nth-child(odd){
+      background: #dff0d8;
+}
+</style>
+
+</head>
+
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page">
+				<img src="/static/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+					href="#">实时数据采集</a>&nbsp;-</span>&nbsp;设备历史数据
+			</div>
+		</div>
+
+
+
+
+
+
+		<div class="page">
+			<!-- opinion 页面样式 -->
+			<div class="opinion">
+				<!-- opinion 表格 显示 -->
+                <div class="conform">
+					<form>
+						<div class="cfD">
+                             <select name="cars"；  style="width:200px; height:30px;">
+                                <option value="bk" >按时间区间搜索</option>
+                                <option value="xfl" selected>按设备id搜索</option>	//预选设置
+                            </select>
+							<input class="addUser"type="text" id="searchtext" placeholder="输入设备id或时间" />
+							<input type="button" class="button" id="search"value="搜索"/>
+
+						</div>
+					</form>
+				</div>
+
+				<div class="opShow">
+					<table border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+						<tr>
+							<td width="440px" class="tdColor">设备序号</td>
+							<td width="440px" class="tdColor">主轴转速</td>
+							<td width="440px" class="tdColor">当前产量</td>
+							<td width="440px" class="tdColor">设定产量</td>
+                            <td width="440px" class="tdColor">周期时间</td>
+                            <td width="440px" class="tdColor">圈数</td>
+                            <td width="440px" class="tdColor">程序号</td>
+                            <td width="440px" class="tdColor">耗时</td>
+                            <td width="440px" class="tdColor">伺服报警</td>
+                            <td width="440px" class="tdColor">轴硬限幅报警</td>
+                            <td width="440px" class="tdColor">轴软限幅报警</td>
+							<td width="440px" class="tdColor">急停报警</td>
+							<td width="440px" class="tdColor">装备故障报警</td>
+							<td width="440px" class="tdColor">文件系统故障报警</td>
+                            <td width="440px" class="tdColor">时间</td>
+
+						</tr>
+                        </thead>
+                         <tbody id="tab_opc">
+                         </tbody>
+                <script type="text/javascript" src="/static/jquery.js"></script>
+                <script>
+               setInterval(loaddata,1000);
+              function loaddata(){
+                  var html = '';
+                  $.ajax({
+                   url: '/machine_history',
+                   type: 'post',
+                   dataType: 'json',
+                    async:true,
+                   success: function (data) { //方法中传入的参数data为后台获取的数据
+                       console.log(data);
+                       console.log(123);
+                       for (var i = 0; i < data.length; i++)  //data.data指的是数组，数组里是8个对象，i为数组的索引
+                       {
+                           console.log(234);
+                           var equipment_id = data[i].equipment_id;
+                           var equipment_id = "GRM231";
+                           var maxis_speed = data[i].maxis_speed;
+                           var current_yield = data[i].current_yield;
+                           var Sheding = data[i].Sheding;
+                           var cycle_time = data[i].cycle_time;
+                           var quanshu = data[i].quanshu;
+                           var program_number = data[i].program_number;
+                           var time_consuming = data[i].time_consuming;
+                           var Servo_alarm = data[i].Servo_alarm;
+                           var Hard_limit_alarm=data[i].Hard_limit_alarm;
+                           var Soft_limit_alarm = data[i].Soft_limit_alarm;
+                           var Stop_alarm = data[i].Stop_alarm;
+                           var Equipment_condition_failure = data[i].Equipment_condition_failure;
+                           var File_system_failure = data[i].File_system_failure;
+                           var time_bian = data[i].time_bian;
+                           var time=data[i].time;
+                           html += '<tr height=40px><td class="center">' + equipment_id + '</td>' +
+                               '<td class="center">' + maxis_speed + '</td>' +
+                               '<td class="center">' + current_yield + '</td>' +
+                               '<td class="center">' + Sheding + '</td>' +
+                               '<td class="center">' + cycle_time + '</td>' +
+                               '<td class="center">' + quanshu + '</td>' +
+                               '<td class="center">' + program_number + '</td>' +
+                               '<td class="center">' + time_consuming + '</td>' +
+                               '<td class="center">' + Servo_alarm + '</td>' +
+                               '<td class="center">' + Hard_limit_alarm + '</td>' +
+                               '<td class="center">' + Soft_limit_alarm + '</td>' +
+                               '<td class="center">' + Stop_alarm + '</td>' +
+                               '<td class="center">' + Equipment_condition_failure + '</td>' +
+                               '<td class="center">' + File_system_failure + '</td>' +
+                               '<td class="center">' + time + '</td></tr>';
+                           {#$("#tab").append(html)#}
+                           {#html = '';#}
+                       }
+                       document.getElementById("tab_opc").innerHTML= html;
+                   }
+               })
+              }
+        </script>
+					</table>
+					<div class="paging">此处是分页</div>
+				</div>
+				<!-- opinion 表格 显示 end-->
+			</div>
+			<!-- 页面样式end -->
+		</div>
+	</div>
+<div class="logFoot" style="float: right;margin-bottom: 2%;margin-right: 2%">
+		<p class="p1">Copyright © ：西安交通大学自动控制研究所</p>
+</div>
+</body>
+
+<script type="text/javascript">
+
+// 通过点击按钮开始筛选
+		$(function(){
+			$('#search').click(function(){
+				var text = $('#searchtext').val();//获取文本框输入
+				if($.trim(text) != ""){
+					$("#table tr:gt(0)").hide().filter(":contains('"+text+"')").show();
+				}
+			})
+		});
+
+
+
+
+
+
+// 广告弹出框
+$(".delban").click(function(){
+  $(".banDel").show();
+});
+$(".close").click(function(){
+  $(".banDel").hide();
+});
+$(".no").click(function(){
+  $(".banDel").hide();
+});
+// 广告弹出框 end
+</script>
+</html>

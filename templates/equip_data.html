@@ -31,12 +31,20 @@ table tr:nth-child(odd){
 							<td width="440px" class="tdColor">设备序号</td>
 							<td width="440px" class="tdColor">主轴转速</td>
 							<td width="440px" class="tdColor">当前产量</td>
-							<td width="440px" class="tdColor">单步/连绕</td>
+							<td width="440px" class="tdColor">设定产量</td>
                             <td width="440px" class="tdColor">周期时间</td>
-                            <td width="440px" class="tdColor">放料个数</td>
-                            <td width="440px" class="tdColor">转速</td>
                             <td width="440px" class="tdColor">圈数</td>
+                            <td width="440px" class="tdColor">程序号</td>
+                            <td width="440px" class="tdColor">耗时</td>
+                            <td width="440px" class="tdColor">伺服报警</td>
+                            <td width="440px" class="tdColor">轴硬限幅报警</td>
+                            <td width="440px" class="tdColor">轴软限幅报警</td>
+							<td width="440px" class="tdColor">急停报警</td>
+							<td width="440px" class="tdColor">装备故障报警</td>
+							<td width="440px" class="tdColor">文件系统故障报警</td>
+                            <td width="440px" class="tdColor">设备状态</td>
                             <td width="440px" class="tdColor">时间</td>
+
 						</tr>
                         </thead>
                          <tbody id="tab_opc">
@@ -60,21 +68,35 @@ table tr:nth-child(odd){
                            var equipment_id = data[i].equipment_id;
                            var maxis_speed = data[i].maxis_speed;
                            var current_yield = data[i].current_yield;
-                           var dan_lian = data[i].dan_lian;
+                           var Sheding = data[i].Sheding;
                            var cycle_time = data[i].cycle_time;
-                           var material_num = data[i].material_num;
-                           var speed = data[i].speed;
                            var quanshu = data[i].quanshu;
-                           var time = data[i].time;
+                           var program_number = data[i].program_number;
+                           var time_consuming = data[i].time_consuming;
+                           var Servo_alarm = data[i].Servo_alarm;
+                           var Hard_limit_alarm=data[i].Hard_limit_alarm;
+                           var Soft_limit_alarm = data[i].Soft_limit_alarm;
+                           var Stop_alarm = data[i].Stop_alarm;
+                           var Equipment_condition_failure = data[i].Equipment_condition_failure;
+                           var File_system_failure = data[i].File_system_failure;
+                           var time_bian = data[i].time_bian;
+                           var state=data[i].state;
                            html += '<tr height=40px><td class="center">' + equipment_id + '</td>' +
                                '<td class="center">' + maxis_speed + '</td>' +
                                '<td class="center">' + current_yield + '</td>' +
-                               '<td class="center">' + dan_lian + '</td>' +
+                               '<td class="center">' + Sheding + '</td>' +
                                '<td class="center">' + cycle_time + '</td>' +
-                               '<td class="center">' + material_num + '</td>' +
-                               '<td class="center">' + speed + '</td>' +
                                '<td class="center">' + quanshu + '</td>' +
-                               '<td class="center">' + time + '</td></tr>';
+                               '<td class="center">' + program_number + '</td>' +
+                               '<td class="center">' + time_consuming + '</td>' +
+                               '<td class="center">' + Servo_alarm + '</td>' +
+                               '<td class="center">' + Hard_limit_alarm + '</td>' +
+                               '<td class="center">' + Soft_limit_alarm + '</td>' +
+                               '<td class="center">' + Stop_alarm + '</td>' +
+                               '<td class="center">' + Equipment_condition_failure + '</td>' +
+                               '<td class="center">' + File_system_failure + '</td>' +
+                               '<td class="center">' + state + '</td>' +
+                               '<td class="center">' + time_bian + '</td></tr>';
                            {#$("#tab").append(html)#}
                            {#html = '';#}
                        }

@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>设备位置显示-绕线机网络化检测与诊断系统</title>
+<link rel="stylesheet" type="text/css" href="/static/css/css.css" />
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='echarts.min.js') }}"></script>
+<!-- <script type="text/javascript" src="js/page.js" ></script> -->
+ <style>
+    table tr:nth-child(even){
+          background: rgba(144, 90, 236, 0.13);
+    }
+</style>
+</head>
+
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page">
+				<img src="/static/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+					href="#">设备状态检测</a>&nbsp;-</span>&nbsp;多台设备查询
+			</div>
+		</div>
+
+		<div class="page">
+			<!-- banner页面样式 -->
+			<div class="connoisseur">
+				<div class="conform">
+					<form>
+						<div class="cfD">
+							<input class="addUser"type="text" id="searchtext" placeholder="输入设备id" />
+							<input type="button" class="button" id="search"value="搜索"/>
+						</div>
+					</form>
+				</div>
+				<!-- banner 表格 显示 -->
+				<div class="conShow">
+					<table border="1" cellspacing="0" cellpadding="0" id="table">
+						<tr>
+							<td width="445px" class="tdColor">设备序号</td>
+							<td width="445px" class="tdColor">利用率</td>
+                            <td width="445px" class="tdColor">停机率</td>
+						</tr>
+                        {% for i in datas.user_list %}
+                        <tr style="height: 45px">
+                            <td class="center">{{ i[0] }}</td>
+                            <td class="center">{{ i[1] }}</td>
+                            <td class="center">{{ i[2] }}</td>
+                        </tr>
+                        {% endfor %}
+					</table>
+                    <div style="float: right;margin-top: 10px">
+                        <table border="1" cellspacing="0" cellpadding="0">
+                        <tr style="height: 40px;color: blue">
+                        {% if datas.show_shouye_status==1%}
+                          <td  style="width: 40px;"><a href='/zonghe1?p=1'>首页</a></td>
+                          <td class=''><a href='/zonghe1?p={{datas.p-1}}'>上一页</a></td>
+                       {%endif%}
+
+                        {% for dic in datas.dic_list %}
+                          {% if dic==datas.p%}
+                              <td style="width: 40px;"><a href="/zonghe1?p={{dic}}" rel="external nofollow" rel="external nofollow" >{{dic}}</a></td>
+                          {%else%}
+                            <td style="width: 40px;"><a href="/zonghe1?p={{dic}}" rel="external nofollow" rel="external nofollow" >{{dic}}</a></td>
+                          {%endif%}
+                        {%endfor%}
+
+                        {% if datas.p < datas.total%}
+                          <td class=''><a href='/zonghe1?p={{datas.p+1}}'></a></td>
+                          <td style="width: 40px;"><a href='/zonghe1?p={{datas.total}}'>尾页</a></td>
+                        {%endif%}
+                            <td>共{{datas.total}}页</td>
+                        </tr>
+                        </table>
+                    </div>
+
+{#					<div class="paging">此处是分页</div>#}
+				</div>
+
+				<!-- banner 表格 显示 end-->
+			</div>
+
+			<!-- banner页面样式end -->
+		</div>
+
+	</div>
+
+    <div class="logFoot" style="float: right;padding-top: 2%;margin-right: 2%">
+		<p class="p1">Copyright © ：西安交通大学自动控制研究所</p>
+    </div>
+
+	<!-- 删除弹出框 -->
+    <!--
+	<div class="banDel">
+		<div class="delete">
+			<div class="close">
+				<a><img src="/static/img/shanchu.png" /></a>
+			</div>
+			<p class="delP1">你确定要删除此条记录吗？</p>
+			<p class="delP2">
+				<a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+			</p>
+		</div>
+	</div>
+	-->
+	<!-- 删除弹出框  end-->
+</body>
+
+<script type="text/javascript">
+
+// 通过点击按钮开始筛选
+		$(function(){
+			$('#search').click(function(){
+				var text = $('#searchtext').val();//获取文本框输入
+				if($.trim(text) != ""){
+					$("#table tr:gt(0)").hide().filter(":contains('"+text+"')").show();
+				}
+			})
+		});
+
+
+
+
+
+
+
+
+// 广告弹出框
+$(".delban").click(function(){
+  $(".banDel").show();
+});
+$(".close").click(function(){
+  $(".banDel").hide();
+});
+$(".no").click(function(){
+  $(".banDel").hide();
+});
+// 广告弹出框 end
+</script>
+</html>

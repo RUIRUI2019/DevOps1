@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>设备位置显示-绕线机网络化检测与诊断系统</title>
+<link rel="stylesheet" type="text/css" href="/static/css/css.css" />
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="js/page.js" ></script> -->
+ <style>
+    table tr:nth-child(even){
+          background: rgba(144, 90, 236, 0.13);
+    }
+</style>
+</head>
+
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page">
+				<img src="/static/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+					href="#">实时数据采集</a>&nbsp;-</span>&nbsp;设备历史数据
+			</div>
+		</div>
+
+		<div class="page">
+			<!-- banner页面样式 -->
+			<div class="connoisseur">
+				<div class="conform">
+					<form method="get" action="/try1" id="tianjiaform">
+                                <div class="bbD">
+                                    <input type="text" name="equipment_id"class="input3"placeholder="输入设备id" />
+                                    <input type="submit" class="btn_ok btn_yes" value="提交">
+                                </div>
+                    </form>
+                    <form method="get" action="/try2" id="tianjiaform2">
+                        起始时间: <input type="date" name="user_date_start" />
+                        结束时间<input type="date" name="user_date_end" />
+                        <input type="submit" class="btn_ok btn_yes" value="提交" />
+                    </form>
+				</div>
+				<!-- banner 表格 显示 -->
+				<div class="conShow">
+					<table border="1" cellspacing="0" cellpadding="0" id="table">
+						<tr>
+                            <td width="440px" class="tdColor">显示编号</td>
+							<td width="440px" class="tdColor">设备序号</td>
+							<td width="440px" class="tdColor">主轴转速</td>
+							<td width="440px" class="tdColor">当前产量</td>
+							<td width="440px" class="tdColor">设定产量</td>
+                            <td width="440px" class="tdColor">周期时间</td>
+                            <td width="440px" class="tdColor">圈数</td>
+                            <td width="440px" class="tdColor">程序号</td>
+                            <td width="440px" class="tdColor">耗时</td>
+                            <td width="440px" class="tdColor">伺服报警</td>
+                            <td width="440px" class="tdColor">轴硬限幅报警</td>
+                            <td width="440px" class="tdColor">轴软限幅报警</td>
+							<td width="440px" class="tdColor">急停报警</td>
+							<td width="440px" class="tdColor">装备故障报警</td>
+							<td width="440px" class="tdColor">文件系统故障报警</td>
+                            <td width="440px" class="tdColor">设备状态</td>
+                            <td width="440px" class="tdColor">时间</td>
+						</tr>
+                        {% for i in datas.user_list %}
+                        <tr style="height: 45px">
+                            <td class="center">{{ i[0] }}</td>
+                            <td class="center">{{ i[1] }}</td>
+                            <td class="center">{{ i[2] }}</td>
+                            <td class="center">{{ i[3] }}</td>
+                            <td class="center">{{ i[4] }}</td>
+                            <td class="center">{{ i[5] }}</td>
+                            <td class="center">{{ i[6] }}</td>
+                            <td class="center">{{ i[7] }}</td>
+                            <td class="center">{{ i[8] }}</td>
+                            <td class="center">{{ i[9] }}</td>
+                            <td class="center">{{ i[10] }}</td>
+                            <td class="center">{{ i[11] }}</td>
+                            <td class="center">{{ i[12] }}</td>
+                            <td class="center">{{ i[13] }}</td>
+                            <td class="center">{{ i[14] }}</td>
+                            <td class="center">{{ i[15] }}</td>
+                            <td class="center">{{ i[16] }}</td>
+                        </tr>
+                        {% endfor %}
+					</table>
+                    <div style="float: right;margin-top: 10px">
+                        <table border="1" cellspacing="0" cellpadding="0">
+                        <tr style="height: 40px;color: blue">
+                        {% if datas.show_shouye_status==1%}
+                          <td  style="width: 40px;"><a href='/try2?p=1&user_date_start={{datas.user_date_start}}&user_date_end={{datas.user_date_end}}'>首页</a></td>
+                          <td class=''><a href='/try2?p={{datas.p-1}}&user_date_start={{datas.user_date_start}}&user_date_end={{datas.user_date_end}}'>上一页</a></td>
+                       {%endif%}
+
+                        {% for dic in datas.dic_list %}
+                          {% if dic==datas.p%}
+                              <td style="width: 40px;"><a href="/try2?p={{dic}}&user_date_start={{datas.user_date_start}}&user_date_end={{datas.user_date_end}}" rel="external nofollow" rel="external nofollow" >{{dic}}</a></td>
+                          {%else%}
+                            <td style="width: 40px;"><a href="/try2?p={{dic}}&user_date_start={{datas.user_date_start}}&user_date_end={{datas.user_date_end}}" rel="external nofollow" rel="external nofollow" >{{dic}}</a></td>
+                          {%endif%}
+                        {%endfor%}
+
+                        {% if datas.p < datas.total%}
+                          <td class=''><a href='/try2?p={{datas.p+1}}&user_date_start={{datas.user_date_start}}&user_date_end={{datas.user_date_end}}'></a></td>
+                          <td style="width: 40px;"><a href='/try2?p={{datas.total}}&user_date_start={{datas.user_date_start}}&user_date_end={{datas.user_date_end}}'>尾页</a></td>
+                        {%endif%}
+                            <td>共{{datas.total}}页</td>
+                        </tr>
+                        </table>
+                    </div>
+
+{#					<div class="paging">此处是分页</div>#}
+				</div>
+
+				<!-- banner 表格 显示 end-->
+			</div>
+
+			<!-- banner页面样式end -->
+		</div>
+
+	</div>
+
+    <div class="logFoot" style="float: right;padding-top: 2%;margin-right: 2%">
+		<p class="p1">Copyright © ：西安交通大学自动控制研究所</p>
+    </div>
+
+	<!-- 删除弹出框 -->
+    <!--
+	<div class="banDel">
+		<div class="delete">
+			<div class="close">
+				<a><img src="/static/img/shanchu.png" /></a>
+			</div>
+			<p class="delP1">你确定要删除此条记录吗？</p>
+			<p class="delP2">
+				<a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+			</p>
+		</div>
+	</div>
+	-->
+	<!-- 删除弹出框  end-->
+</body>
+
+<script type="text/javascript">
+
+// 通过点击按钮开始筛选
+		$(function(){
+			$('#search').click(function(){
+				var text = $('#searchtext').val();//获取文本框输入
+				if($.trim(text) != ""){
+					$("#table tr:gt(0)").hide().filter(":contains('"+text+"')").show();
+				}
+			})
+		});
+
+
+
+
+
+
+// 广告弹出框
+$(".delban").click(function(){
+  $(".banDel").show();
+});
+$(".close").click(function(){
+  $(".banDel").hide();
+});
+$(".no").click(function(){
+  $(".banDel").hide();
+});
+// 广告弹出框 end
+</script>
+</html>
