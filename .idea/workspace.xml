@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31a2f497-ba17-4a18-ac7d-12c2b266cdc2" name="Default" comment="7.13commit">
+    <list default="true" id="31a2f497-ba17-4a18-ac7d-12c2b266cdc2" name="Default" comment="7.13_2commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
@@ -19,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="514" column="18" lean-forward="true" selection-start-line="514" selection-start-column="18" selection-end-line="514" selection-end-column="18" />
+            <state relative-caret-position="187">
+              <caret line="515" column="16" lean-forward="true" selection-start-line="515" selection-start-column="16" selection-end-line="515" selection-end-column="16" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -379,7 +379,7 @@
       <workItem from="1562462195837" duration="7780000" />
       <workItem from="1562546310457" duration="22616000" />
       <workItem from="1562633327330" duration="54035000" />
-      <workItem from="1562844592308" duration="13720000" />
+      <workItem from="1562844592308" duration="13819000" />
     </task>
     <task id="LOCAL-00001" summary="7.13commit">
       <created>1562985657775</created>
@@ -388,11 +388,18 @@
       <option name="project" value="LOCAL" />
       <updated>1562985657775</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="7.13_2commit">
+      <created>1562986267159</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1562986267159</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153075000" />
+    <option name="totallyTimeSpent" value="153174000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -412,7 +419,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9109442" visible="true" weight="0.2697517" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.9109442" visible="true" weight="0.2697517" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41422123" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -420,7 +427,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.29683974" />
       <window_info anchor="bottom" id="Python Console" order="8" weight="0.3295711" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32903227" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.08905579" side_tool="true" visible="true" weight="0.2697517" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.08905579" side_tool="true" weight="0.2697517" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -436,7 +443,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="7.13commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="7.13commit" />
+    <MESSAGE value="7.13_2commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="7.13_2commit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DevOps1$app.coverage" NAME="app Coverage Results" MODIFIED="1562980274164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -782,8 +790,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="514" column="18" lean-forward="true" selection-start-line="514" selection-start-column="18" selection-end-line="514" selection-end-column="18" />
+        <state relative-caret-position="187">
+          <caret line="515" column="16" lean-forward="true" selection-start-line="515" selection-start-column="16" selection-end-line="515" selection-end-column="16" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>

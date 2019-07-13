@@ -513,7 +513,7 @@ def remove_equip(equipment_id):
             traceback.print_exc()
             db.rollback()
         db.close()
-        print()
+        print(1)
     return redirect('/equip_map/position')
 
 #修改设备信息
