@@ -63,6 +63,7 @@ def hello_world2():
     }
     return render_template("history_show_time.html", datas=datas)
 
+#按照id查询历史数据
 @app.route('/try1')
 def hello_world1():
     F=request.args.get('equipment_id')

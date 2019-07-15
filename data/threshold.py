@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*
 import pymysql
 import time
 import traceback
@@ -10,6 +11,7 @@ def fun(key_limitValue):
         sql = "select equipment_id,maxis_speed from equip_data where maxis_speed<{min_value} or maxis_speed " \
               ">{max_value}".format(min_value=key_limitValue['maxis_speed'][0],max_value=key_limitValue['maxis_speed'][1])
         # print(sql)
+        print("123")
         try:
             cursor.execute(sql)
             maxis = cursor.fetchall()
