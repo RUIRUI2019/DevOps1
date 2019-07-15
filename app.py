@@ -68,6 +68,7 @@ def hello_world2():
 def hello_world1():
     F=request.args.get('equipment_id')
     f=str(F)
+    print("1")
     print(f)
     p = request.args.get("p", '')
     show_shouye_status = 0  # 显示首页状态
