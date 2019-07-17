@@ -11,7 +11,7 @@ def fun(key_limitValue):
         sql = "select equipment_id,maxis_speed from equip_data where maxis_speed<{min_value} or maxis_speed " \
               ">{max_value}".format(min_value=key_limitValue['maxis_speed'][0],max_value=key_limitValue['maxis_speed'][1])
         # print(sql)
-        print("123")
+
         try:
             cursor.execute(sql)
             maxis = cursor.fetchall()
@@ -74,7 +74,7 @@ def fun(key_limitValue):
     db.close()
 
 if __name__ == '__main__':
-    key_limitValue={'maxis_speed':[1000,26000],
+    key_limitValue={'maxis_speed':[30,96],
                     'current_yield':[300,600],
                     'cycle_time':[200,500],
                     'material_num':[500,800],

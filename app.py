@@ -18,10 +18,12 @@ from user_manage import app
 def hello_world2():
     F1=request.args.get('user_date_start')
     F2=request.args.get('user_date_end')
-    m1 = F1.strip().split("-")
-    x1 = str(m1[1]) + "/" + str(m1[2]) + "/" + str(m1[0].strip("20"))
-    m2 = F2.strip().split("-")
-    x2 = str(m2[1]) + "/" + str(m2[2]) + "/" + str(m2[0].strip("20"))
+    x1=F1
+    x2=F2
+    # m1 = F1.strip().split("-")
+    # x1 = str(m1[1]) + "/" + str(m1[2]) + "/" + str(m1[0].strip("20"))
+    # m2 = F2.strip().split("-")
+    # x2 = str(m2[1]) + "/" + str(m2[2]) + "/" + str(m2[0].strip("20"))
     p = request.args.get("p", '')
     show_shouye_status = 0  # 显示首页状态
 
@@ -33,9 +35,6 @@ def hello_world2():
             show_shouye_status = 1
 
     limit_start = (int(p) - 1) * 13  # 起始
-    print(x1)
-    print(x2)
-
     db = pymysql.connect("localhost", "root", "123456", "opcdata")
     cursor = db.cursor()
     # sql = "SELECT * FROM history limit {0},13 WHERE equipment_id= '"+f+"'".format(xuhao=limit_start)
