@@ -27,15 +27,20 @@
 			<div class="connoisseur">
 				<div class="conform">
 					<form method="get" action="/try1" id="tianjiaform">
-                                <div class="bbD">
-                                    <input type="text" name="equipment_id"class="input3"placeholder="输入设备id" />
-                                    <input type="submit" class="btn_ok btn_yes" value="提交">
+                                <div class="cfD">
+                                    <input type="text" name="equipment_id"class="addUser"placeholder="输入设备id" />
+                                    <input type="submit" class="button" value="提交">
+                                    <button class="button">打印数据</button>
+
                                 </div>
+
                     </form>
-                    <form method="get" action="/try2" id="tianjiaform2">
+                    <form method="get" action="/try2" id="tianjiaform">
+                        <div class="cfD">
                         起始时间: <input type="date" name="user_date_start" />
                         结束时间<input type="date" name="user_date_end" />
-                        <input type="submit" class="btn_ok btn_yes" value="提交" />
+                        <input type="submit" class="button" name="user_date_end1" value="提交" />
+                        </div>
                     </form>
 				</div>
 				<!-- banner 表格 显示 -->
@@ -139,7 +144,24 @@
 	<!-- 删除弹出框  end-->
 </body>
 
+<script type="text/javascript" src="/static/jquery.js"></script>
+<script type="text/javascript" src="/static/js/jquery.table2excel.js"></script>
+
 <script type="text/javascript">
+
+$('button').click(function(){
+			console.log(1)
+			$("#table").table2excel({
+		        exclude: ".noExl",
+		        name: "Excel Document Name",
+		        filename: "history_show.xls",
+		        exclude_img: true,
+		        exclude_links: true,
+		        exclude_inputs: true
+
+		    });
+			console.log(2)
+		});
 
 // 通过点击按钮开始筛选
 		$(function(){
@@ -150,11 +172,6 @@
 				}
 			})
 		});
-
-
-
-
-
 
 // 广告弹出框
 $(".delban").click(function(){
