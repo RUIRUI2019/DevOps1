@@ -15,7 +15,7 @@
      });
 
     // 基于准备好的dom，初始化echarts实例
-    //var myChart1 = echarts.init(document.getElementById('main1'));
+    // var myChart1 = echarts.init(document.getElementById('main1'));
     var myChart2 = echarts.init(document.getElementById('main3'));
     var myChart3 = echarts.init(document.getElementById('main2'));
     var myChart4 = echarts.init(document.getElementById('main4'));
@@ -23,6 +23,8 @@
 function bind(result) {
     var myChart1 = echarts.init(document.getElementById('main1'));
     myChart1.showLoading()
+    // var myChart2 = echarts.init(document.getElementById('main2'));
+    // myChart2.showLoading()
     var option1 = {
 
         title: {
@@ -49,7 +51,7 @@ function bind(result) {
             data:(function(){
                     var res = [];
                     var len = result.length;
-                        for(var i = 0; i < len; i++) {
+                        for(var i = 0; i < len-1; i++) {
                          res.push(result[i].equipment_id);
                         }
                         return res;
@@ -80,7 +82,7 @@ function bind(result) {
                 data:(function(){
                     var res = [];
                     var len = result.length;
-                        for(var i = 0; i < len; i++) {
+                        for(var i = 0; i < len-1; i++) {
                          res.push(result[i].rate);
                         }
                         return res;
@@ -182,7 +184,7 @@ function bind(result) {
             legend: {
                 orient : 'vertical',
                 x : 'left',
-                data:['自动上下料机构','张力器','运动控制器','主轴箱','压线机构']
+                data:['停机时间','利用率']
             },
            toolbox: {
                 show : true,
@@ -201,13 +203,22 @@ function bind(result) {
                     type:'pie',
                     radius : '55%',
                     center: ['50%', '60%'],
-                    data:[
-                        {value:335, name:'自动上下料机构'},
-                        {value:310, name:'张力器'},
-                        {value:234, name:'运动控制器'},
-                        {value:135, name:'主轴箱'},
-                        {value:1548, name:'压线机构'}
-                    ]
+                     data:(function(result){
+                    var res = [];
+                    // var len = result.length;
+                    var f=10 ;
+                    var m=8;
+
+                         res.push({value:f, name:'停机时间'});
+                         res.push({value:m, name:'利用率'});
+
+                        return res;
+                })(),
+                    // data:[
+                    //     {value:aa, name:'自动上下料机构'},
+                    //     {value:bb, name:'张力器'}
+                    //
+                    // ]
                 }
             ]
         };

@@ -458,6 +458,28 @@ def threshold1():
     print(data_list)
     return json.dumps(data_list)
 
+
+###统计全局信息
+def tongji_tingji_all():
+    # print(xinghao)
+    db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    cursor = db.cursor()
+    sq2 = "select state from history "
+    tingji1 = 0.0
+    count = 0.0
+    cursor.execute(sq2)
+    u_rate = cursor.fetchall()
+    db.close()
+    for i in u_rate:
+        if i[0] == str(0):
+            tingji1 = tingji1 + 1
+        count = count + 1
+    tem_tongji = {}
+    tem_tongji['equipment_id1'] = tingji1
+    tem_tongji['rate'] = count-tingji1
+    return tem_tongji
+
+###
 @app.route('/bar_data',methods=['GET','POST'])
 def bar_data():
     db = pymysql.connect("localhost", "root", "123456", "opcdata")
@@ -473,6 +495,14 @@ def bar_data():
         tem['rate'] = i[1]
         data_list.append(tem)
     print(data_list)
+
+    #####
+    tem_tongji = tongji_tingji_all()
+    print(tem_tongji)
+    data_list.append(tem_tongji)
+    # all_result=[]
+    # all_result.append(data_list)
+    # all_result.append(rate)
     return json.dumps(data_list)
 
 @app.route('/addrTojson',methods=['GET','POST'])
