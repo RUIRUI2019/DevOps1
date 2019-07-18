@@ -23,30 +23,30 @@
 			</div>
 		</div>
 
-		<div class="page">
+		<div class="page" >
 			<!-- banner页面样式 -->
 			<div class="connoisseur">
 				<div class="conform">
 					<form>
 						<div class="cfD">
-							<input class="addUser"type="text" id="searchtext" placeholder="输入设备id" />
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="addUser"type="text" id="searchtext" placeholder="输入设备id" />
 							<input type="button" class="button" id="search"value="搜索"/>
 						</div>
 					</form>
 				</div>
 				<!-- banner 表格 显示 -->
-				<div class="conShow">
-					<table border="1" cellspacing="0" cellpadding="0" id="table">
+				 <div class="conShow1">
+					 <table border="1" cellspacing="0" cellpadding="0" id="table" >
 						<tr>
-							<td width="445px" class="tdColor">设备序号</td>
-							<td width="445px" class="tdColor">利用率</td>
-                            <td width="445px" class="tdColor">停机率</td>
+							 <td width="445px" class="tdColor">设备序号</td>
+							 <td width="445px" class="tdColor">利用率</td>
+                             <td width="445px" class="tdColor">停机率</td>
 						</tr>
                         {% for i in datas.user_list %}
                         <tr style="height: 45px">
-                            <td class="center">{{ i[0] }}</td>
-                            <td class="center">{{ i[1] }}</td>
-                            <td class="center">{{ i[2] }}</td>
+                             <td class="center">{{ i[0] }}</td>
+                             <td class="center">{{ i[1] }}</td>
+                             <td class="center">{{ i[2] }}</td>
                         </tr>
                         {% endfor %}
 					</table>
