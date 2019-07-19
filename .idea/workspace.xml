@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31a2f497-ba17-4a18-ac7d-12c2b266cdc2" name="Default" comment="7.18_1commit">
+    <list default="true" id="31a2f497-ba17-4a18-ac7d-12c2b266cdc2" name="Default" comment="7.18_2commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/css.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/css.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/inc/left.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/inc/left.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/history_show.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/history_show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/history_show_id.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/history_show_id.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/history_show_time.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/history_show_time.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/position_add.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/position_add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/zonghefenxi1_all.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/zonghefenxi1_all.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/zonghefenxi1_all.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="31" column="88" selection-start-line="31" selection-start-column="88" selection-end-line="31" selection-end-column="88" />
+            <state relative-caret-position="-175">
+              <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
               <folding>
                 <element signature="n#style#0;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -47,7 +40,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/threshold.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1561">
+              <caret line="76" column="40" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/inc/left.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="154">
@@ -89,11 +91,34 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/position_add.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="301">
-              <caret line="28" column="60" lean-forward="true" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="60" />
+              <caret line="31" column="149" selection-start-line="31" selection-start-column="149" selection-end-line="31" selection-end-column="149" />
+              <folding>
+                <element signature="e#1023#1029#0#HTML" expanded="true" />
+                <element signature="e#1023#1029#0#HTML" expanded="true" />
+                <element signature="e#1144#1150#0#HTML" expanded="true" />
+                <element signature="e#1381#1387#0#HTML" expanded="true" />
+                <element signature="e#1381#1387#0#HTML" expanded="true" />
+                <element signature="e#1345#1351#0#HTML" expanded="true" />
+                <element signature="e#1351#1357#0#HTML" expanded="true" />
+                <element signature="e#1345#1351#0#HTML" expanded="true" />
+                <element signature="e#1309#1315#0#HTML" expanded="true" />
+                <element signature="e#1494#1500#0#HTML" expanded="true" />
+                <element signature="e#1500#1506#0#HTML" expanded="true" />
+                <element signature="e#1685#1691#0#HTML" expanded="true" />
+                <element signature="e#1892#1898#0#HTML" expanded="true" />
+                <element signature="e#1820#1826#0#HTML" expanded="true" />
+                <element signature="e#2385#2391#0#HTML" expanded="true" />
+                <element signature="e#2277#2283#0#HTML" expanded="true" />
+                <element signature="e#2409#2415#0#HTML" expanded="true" />
+                <element signature="e#2681#2687#0#HTML" expanded="true" />
+                <element signature="e#2537#2543#0#HTML" expanded="true" />
+                <element signature="e#2611#2617#0#HTML" expanded="true" />
+                <element signature="e#3664#3670#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,7 +186,6 @@
         <option value="$PROJECT_DIR$/TRY.py" />
         <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/static/js/chart.js" />
-        <option value="$PROJECT_DIR$/templates/position_add.html" />
         <option value="$PROJECT_DIR$/templates/equip_data.html" />
         <option value="$PROJECT_DIR$/templates/history_show.html" />
         <option value="$PROJECT_DIR$/templates/history_show_id.html" />
@@ -170,14 +194,15 @@
         <option value="$PROJECT_DIR$/static/css/css.css" />
         <option value="$PROJECT_DIR$/templates/zonghefenxi1_all.html" />
         <option value="$PROJECT_DIR$/static/inc/left.html" />
+        <option value="$PROJECT_DIR$/templates/position_add.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="669" />
-    <option name="y" value="260" />
-    <option name="width" value="800" />
-    <option name="height" value="552" />
+    <option name="x" value="-329" />
+    <option name="y" value="192" />
+    <option name="width" value="1853" />
+    <option name="height" value="1068" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -194,6 +219,11 @@
             </path>
             <path>
               <item name="DevOps1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DevOps1" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DevOps1" type="b2602c69:ProjectViewProjectNode" />
               <item name="opcgain" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -204,65 +234,6 @@
               <item name="DevOps1" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="&lt; Python 2.7 (3) &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="DevOps1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 2.7 (3) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="Python27" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevOps1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 2.7 (3) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="Python27" type="462c0819:PsiDirectoryNode" />
-              <item name="Scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevOps1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 2.7 (3) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="Python27" type="462c0819:PsiDirectoryNode" />
-              <item name="Scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="DevOps1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevOps1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 2.7 (3) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="Python27" type="462c0819:PsiDirectoryNode" />
-              <item name="Scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="DevOps1" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevOps1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 2.7 (3) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="Python27" type="462c0819:PsiDirectoryNode" />
-              <item name="Scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="DevOps1" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevOps1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 2.7 (3) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="Python27" type="462c0819:PsiDirectoryNode" />
-              <item name="Scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="DevOps1" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="inc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevOps1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 2.7 (3) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="Python27" type="462c0819:PsiDirectoryNode" />
-              <item name="Scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="DevOps1" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -442,7 +413,7 @@
       <workItem from="1562844592308" duration="14529000" />
       <workItem from="1563002045433" duration="2387000" />
       <workItem from="1563151799290" duration="5607000" />
-      <workItem from="1563262529569" duration="37654000" />
+      <workItem from="1563262529569" duration="40913000" />
     </task>
     <task id="LOCAL-00001" summary="7.13commit">
       <created>1562985657775</created>
@@ -500,11 +471,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563421239456</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="7.18_2commit">
+      <created>1563441050713</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1563441050713</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201125000" />
+    <option name="totallyTimeSpent" value="204384000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -519,12 +497,12 @@
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4986911" visible="true" weight="0.19045064" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4986911" visible="true" weight="0.18133047" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5013089" side_tool="true" weight="0.031045752" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.91148067" visible="true" weight="0.35327312" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.91148067" visible="true" weight="0.25056434" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41422123" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -532,7 +510,7 @@
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.3295711" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49946353" weight="0.22121896" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32903227" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.08851931" side_tool="true" visible="true" weight="0.35327312" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.08851931" side_tool="true" visible="true" weight="0.25056434" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -594,11 +572,12 @@
     <MESSAGE value="7.17_commit" />
     <MESSAGE value="7.17_2commit" />
     <MESSAGE value="7.18_1commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="7.18_1commit" />
+    <MESSAGE value="7.18_2commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="7.18_2commit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DevOps1$Lstm.coverage" NAME="Lstm Coverage Results" MODIFIED="1563354248295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/Big_Data_Innovation2019/Big_Data_Innovation2019" />
-    <SUITE FILE_PATH="coverage/DevOps1$app.coverage" NAME="app Coverage Results" MODIFIED="1563440956393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DevOps1$app.coverage" NAME="app Coverage Results" MODIFIED="1563501394619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DevOps1$OpenOPC.coverage" NAME="OpenOPC Coverage Results" MODIFIED="1562843032261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../Lib/site-packages" />
     <SUITE FILE_PATH="coverage/DevOps1$TRY.coverage" NAME="TRY Coverage Results" MODIFIED="1563356237005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DevOps1$Opc_client.coverage" NAME="Opc_client Coverage Results" MODIFIED="1563354597672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/opcgain/opcgain" />
@@ -795,13 +774,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/threshold.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1860">
-          <caret line="76" column="40" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TRY.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -895,23 +867,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/position_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="28" column="60" lean-forward="true" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/zonghefenxi1_all.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="31" column="88" selection-start-line="31" selection-start-column="88" selection-end-line="31" selection-end-column="88" />
-          <folding>
-            <element signature="n#style#0;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/css.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -958,6 +913,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="167" column="48" selection-start-line="167" selection-start-column="48" selection-end-line="167" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/zonghefenxi1_all.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-175">
+          <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+          <folding>
+            <element signature="n#style#0;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/threshold.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1561">
+          <caret line="76" column="40" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/position_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="31" column="149" selection-start-line="31" selection-start-column="149" selection-end-line="31" selection-end-column="149" />
+          <folding>
+            <element signature="e#1023#1029#0#HTML" expanded="true" />
+            <element signature="e#1023#1029#0#HTML" expanded="true" />
+            <element signature="e#1144#1150#0#HTML" expanded="true" />
+            <element signature="e#1381#1387#0#HTML" expanded="true" />
+            <element signature="e#1381#1387#0#HTML" expanded="true" />
+            <element signature="e#1345#1351#0#HTML" expanded="true" />
+            <element signature="e#1351#1357#0#HTML" expanded="true" />
+            <element signature="e#1345#1351#0#HTML" expanded="true" />
+            <element signature="e#1309#1315#0#HTML" expanded="true" />
+            <element signature="e#1494#1500#0#HTML" expanded="true" />
+            <element signature="e#1500#1506#0#HTML" expanded="true" />
+            <element signature="e#1685#1691#0#HTML" expanded="true" />
+            <element signature="e#1892#1898#0#HTML" expanded="true" />
+            <element signature="e#1820#1826#0#HTML" expanded="true" />
+            <element signature="e#2385#2391#0#HTML" expanded="true" />
+            <element signature="e#2277#2283#0#HTML" expanded="true" />
+            <element signature="e#2409#2415#0#HTML" expanded="true" />
+            <element signature="e#2681#2687#0#HTML" expanded="true" />
+            <element signature="e#2537#2543#0#HTML" expanded="true" />
+            <element signature="e#2611#2617#0#HTML" expanded="true" />
+            <element signature="e#3664#3670#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
