@@ -205,9 +205,9 @@ function bind(result) {
                     center: ['50%', '60%'],
                      data:(function(result){
                     var res = [];
-                    // var len = result.length;
-                    var f=10 ;
-                    var m=8;
+                    var len = result.length;
+                    var f= result[len-1].equipment_id;
+                    var m=result[len-1].rate;
 
                          res.push({value:f, name:'停机时间'});
                          res.push({value:m, name:'利用率'});
