@@ -475,8 +475,53 @@ def tongji_tingji_all():
             tingji1 = tingji1 + 1
         count = count + 1
     tem_tongji = {}
-    tem_tongji['equipment_id1'] = tingji1
+    tem_tongji['equipment_id'] = tingji1
     tem_tongji['rate'] = count-tingji1
+    return tem_tongji
+
+##
+def tongji_tingji_all_Servo_alarm():
+    # print(xinghao)
+    db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    cursor = db.cursor()
+    sq2 = "select Servo_alarm from history "
+    tingji1 = 0.0
+    count = 0.0
+    cursor.execute(sq2)
+    u_rate = cursor.fetchall()
+    db.close()
+    for i in u_rate:
+        if i[0] == str(True):
+            tingji1 = tingji1 + 1
+        count = count + 1
+    tem_tongji = {}
+    tem_tongji['equipment_id'] = tingji1
+    tem_tongji['rate'] = count-tingji1
+    print(tingji1)
+    print(count-tingji1)
+    return tem_tongji
+
+####
+
+def tongji_stop_alarm():
+    # print(xinghao)
+    db = pymysql.connect("localhost", "root", "123456", "opcdata")
+    cursor = db.cursor()
+    sq2 = "select Stop_alarm from history "
+    tingji1 = 0.0
+    count = 0.0
+    cursor.execute(sq2)
+    u_rate = cursor.fetchall()
+    db.close()
+    for i in u_rate:
+        if i[0] == str(True):
+            tingji1 = tingji1 + 1
+        count = count + 1
+    tem_tongji = {}
+    tem_tongji['equipment_id'] = tingji1
+    tem_tongji['rate'] = count-tingji1
+    print(tingji1)
+    print(count-tingji1)
     return tem_tongji
 
 ###
@@ -500,9 +545,15 @@ def bar_data():
     tem_tongji = tongji_tingji_all()
     print(tem_tongji)
     data_list.append(tem_tongji)
+    tem_tongji_Servo_alarm = tongji_tingji_all_Servo_alarm()
+    # print(tem_tongji)
+    data_list.append(tem_tongji_Servo_alarm)
+    tongji_tingji_all_Stop_alarm= tongji_stop_alarm()
+    data_list.append(tongji_tingji_all_Stop_alarm)
     # all_result=[]
     # all_result.append(data_list)
     # all_result.append(rate)
+    # print(json.dumps(data_list))
     return json.dumps(data_list)
 
 @app.route('/addrTojson',methods=['GET','POST'])
