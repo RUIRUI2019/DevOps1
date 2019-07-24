@@ -119,7 +119,7 @@ def tongji_tingji(xinghao):
     u_rate = cursor.fetchall()
     db.close()
     for i in u_rate:
-        if i[0] == str(0):
+        if i[0] == str("stop"):
             tingji1 = tingji1 + 1
         count = count + 1
     rate = tingji1 / count
@@ -369,7 +369,11 @@ def machine_data():
         tem['Stop_alarm'] = i[11]
         tem['Equipment_condition_failure'] = i[12]
         tem['File_system_failure'] = i[13]
-        tem['state'] = i[14]
+        if i[14]==str(0):
+            k="stop"
+        if i[14]==str(1):
+            k = "work"
+        tem['state'] = k
         tem['time_bian'] = i[15]
         tem['time'] = str(time.strftime('%Y.%m.%d %H:%M:%S ', time.localtime(time.time())))
         jsondata.append(tem)
@@ -471,7 +475,7 @@ def tongji_tingji_all():
     u_rate = cursor.fetchall()
     db.close()
     for i in u_rate:
-        if i[0] == str(0):
+        if i[0] == str("stop"):
             tingji1 = tingji1 + 1
         count = count + 1
     tem_tongji = {}

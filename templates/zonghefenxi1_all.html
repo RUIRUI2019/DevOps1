@@ -31,6 +31,7 @@
 						<div class="cfD">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="addUser"type="text" id="searchtext" placeholder="输入设备id" />
 							<input type="button" class="button" id="search"value="搜索"/>
+                            <button class="button">打印数据</button>
 						</div>
 					</form>
 				</div>
@@ -107,7 +108,24 @@
 	<!-- 删除弹出框  end-->
 </body>
 
+<script type="text/javascript" src="/static/jquery.js"></script>
+<script type="text/javascript" src="/static/js/jquery.table2excel.js"></script>
+
 <script type="text/javascript">
+
+$('button').click(function(){
+			console.log(1)
+			$("#table").table2excel({
+		        exclude: ".noExl",
+		        name: "Excel Document Name",
+		        filename: "history_show.xls",
+		        exclude_img: true,
+		        exclude_links: true,
+		        exclude_inputs: true
+
+		    });
+			console.log(2)
+		});
 
 // 通过点击按钮开始筛选
 		$(function(){
@@ -118,13 +136,6 @@
 				}
 			})
 		});
-
-
-
-
-
-
-
 
 // 广告弹出框
 $(".delban").click(function(){
